@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 VERSION = {}
 
-with open("./beesly/__init__.py") as fp:
+with open("./swiftshadow/__init__.py") as fp:
     # pylint: disable=W0122
 
     exec(fp.read(), VERSION)
