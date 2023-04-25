@@ -1,4 +1,4 @@
-from constants import CountryCodes
+from swiftshadow.constants import CountryCodes
 from requests import get
 
 
