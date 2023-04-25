@@ -21,7 +21,7 @@ Everything in swiftshadow is under one class for ease of use and minimal code.
 
 Get a proxy using just 3 lines of code!
 ``` py
-from swiftshadow import Proxy
+from swiftshadow.swiftshadow import Proxy
 
 swift = Proxy()
 print(swift.proxy())

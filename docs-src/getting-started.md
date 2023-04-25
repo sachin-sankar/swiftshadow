@@ -2,7 +2,7 @@
 
 To get a random `HTTP` proxy from any country
 ``` py
-from swiftshadow import Proxy
+from swiftshadow.swiftshadow import Proxy
 swift = Proxy()
 
 print(swift.proxy())
@@ -38,7 +38,7 @@ swift = Proxy(protocol='https')
 ### Manual Rotation 
 You can manually rotate proxies using the `rotate()` method. This will choose a random proxy from available proxies.
 ``` py
-from swiftshadow import Proxy
+from swiftshadow.swiftshadow import Proxy
 swift = Proxy()
 
 print(swift.proxy())
@@ -48,7 +48,7 @@ print(swift.proxy())
 ### Auto Rotation
 Proxies can be rotated automatically by setting the parameter `autoRotate` to `True` when initialising the `Proxy` object. When auto rotate is set to true proxy is rotated everytime `proxy()` method is called.
 ``` py
-from swiftshadow import Proxy
+from swiftshadow.swiftshadow import Proxy
 swift = Proxy(autoRotate=True)
 
 print(swift.proxy())
