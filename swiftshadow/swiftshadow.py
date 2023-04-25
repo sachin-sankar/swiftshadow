@@ -32,7 +32,7 @@ class Proxy:
 
         Examples:
                 Simplest way to get a proxy
-                >>> from swiftshadow import Proxy
+                >>> from swiftshadow.swiftshadow import Proxy
                 >>> swift = Proxy()
                 >>> print(swift.proxy())
                 {'http':'192.0.0.1:8080'}
