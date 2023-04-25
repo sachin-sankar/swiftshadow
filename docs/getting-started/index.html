@@ -555,7 +555,7 @@
 
 <h2 id="basic-usage">Basic Usage</h2>
 <p>To get a random <code>HTTP</code> proxy from any country
-<div class="language-py highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">swiftshadow</span> <span class="kn">import</span> <span class="n">Proxy</span>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">swiftshadow.swiftshadow</span> <span class="kn">import</span> <span class="n">Proxy</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">Proxy</span><span class="p">()</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">proxy</span><span class="p">())</span>
@@ -586,7 +586,7 @@ This is the most basic usage of swiftshadow but wait it got more stuff.</p>
 <h2 id="proxy-rotation">Proxy Rotation</h2>
 <h3 id="manual-rotation">Manual Rotation</h3>
 <p>You can manually rotate proxies using the <code>rotate()</code> method. This will choose a random proxy from available proxies.
-<div class="language-py highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">swiftshadow</span> <span class="kn">import</span> <span class="n">Proxy</span>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span> <span class="nn">swiftshadow.swiftshadow</span> <span class="kn">import</span> <span class="n">Proxy</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">Proxy</span><span class="p">()</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">proxy</span><span class="p">())</span>
@@ -595,7 +595,7 @@ This is the most basic usage of swiftshadow but wait it got more stuff.</p>
 </span></code></pre></div></p>
 <h3 id="auto-rotation">Auto Rotation</h3>
 <p>Proxies can be rotated automatically by setting the parameter <code>autoRotate</code> to <code>True</code> when initialising the <code>Proxy</code> object. When auto rotate is set to true proxy is rotated everytime <code>proxy()</code> method is called.
-<div class="language-py highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">swiftshadow</span> <span class="kn">import</span> <span class="n">Proxy</span>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span> <span class="nn">swiftshadow.swiftshadow</span> <span class="kn">import</span> <span class="n">Proxy</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">Proxy</span><span class="p">(</span><span class="n">autoRotate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">proxy</span><span class="p">())</span>
