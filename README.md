@@ -1,4 +1,6 @@
-
+# Swiftshadow
+![PyPI - Downloads](https://img.shields.io/pypi/dm/swiftshadow) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/sachin-sankar/swiftshadow?include_prereleases&style=flat)
+## About
 Swiftshadow is a powerful Python library designed to simplify the process of rotating IP proxies for web scraping, data mining, and other automated tasks. With its advanced features, Swiftshadow can help you overcome many of the challenges associated with web scraping, including blocked IP addresses and other forms of detection.
 
 One of the key benefits of Swiftshadow is its speed. The library is designed to operate quickly and efficiently, which means you can scrape data at a faster rate than with other tools. Additionally, Swiftshadow includes a built-in caching mechanism that helps to reduce the load time and improve performance.
