@@ -2,8 +2,8 @@ from requests import get
 from random import choice
 from datetime import datetime, timezone, timedelta
 from pickle import dump, load
-from helpers import log
-from providers import Proxyscrape, Scrapingant
+from swiftshadow.helpers import log
+from swiftshadow.providers import Proxyscrape, Scrapingant
 
 
 class Proxy:
