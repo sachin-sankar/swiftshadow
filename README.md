@@ -28,4 +28,4 @@ print(swift.proxy())
 ```
 That was easy. 
 
-Head to documentation to get started.
+Head to [Documentation](https://sachin-sankar.github.io/swiftshadow/) to get started.
