@@ -4,6 +4,7 @@ from datetime import datetime, timezone, timedelta
 from pickle import dump, load
 from swiftshadow.helpers import log
 from swiftshadow.providers import Proxyscrape, Scrapingant
+import swiftshadow.cache as cache
 
 
 class Proxy:
@@ -44,7 +45,7 @@ class Proxy:
         self.maxProxies = maxProxies
         self.autoRotate = autoRotate
         self.cachePeriod = cachePeriod
-        self.updateProxyList()
+        self.update()
 
     def checkIp(self, ip, cc, protocol):
         if (ip[1] == cc or cc == None) and ip[2] == protocol:
@@ -60,27 +61,16 @@ class Proxy:
         else:
             return False
 
-    def checkCache(self, latest, cache=datetime.now(timezone.utc)):
-        expiry = latest + timedelta(minutes=self.cachePeriod)
-        live = cache - latest
-        dead = expiry - cache
-        limit = float(self.cachePeriod)
-        if live.seconds / 60 < limit and dead.seconds / 60 < limit:
-            cacheValid = True
-        else:
-            cacheValid = False
-        return cacheValid
-
-    def updateProxyList(self):
+    def update(self):
         try:
             with open(".swiftshadow.dat", "rb") as file:
                 data = load(file)
-                self.latest = data[0]
-                cacheState = self.checkCache(self.latest)
-            if cacheState:
+                self.expiry = data[0]
+                expired = cache.checkExpiry(self.expiry)
+            if not expired:
                 log(
                     "info",
-                    f"{datetime.now(timezone.utc).time()} Loaded proxies from cache",
+                    f"Loaded proxies from cache",
                 )
                 self.proxies = data[1]
                 self.current = self.proxies[0]
@@ -88,7 +78,7 @@ class Proxy:
             else:
                 log(
                     "info",
-                    f"{datetime.now(timezone.utc).time()} Cache expired. Updating cache...",
+                    f"Cache expired. Updating cache...",
                 )
         except FileNotFoundError:
             log("error", "No cache found. Cache will be created after update")
@@ -106,7 +96,7 @@ class Proxy:
             )
             self.update()
         with open(".swiftshadow.dat", "wb") as file:
-            dump([datetime.now(timezone.utc), self.proxies], file)
+            dump([cache.getExpiry(self.cachePeriod), self.proxies], file)
         self.current = self.proxies[0]
 
     def rotate(self):
@@ -118,7 +108,7 @@ class Proxy:
         Note:
                 Function only for manual rotation. If `autoRotate` is set to `True` then no need to call this function.
         """
-        if not self.checkCache(self.latest):
+        if cache.checkExpiry(self.expiry):
             self.update()
         self.current = choice(self.proxies)
 
@@ -129,9 +119,15 @@ class Proxy:
         Returns:
                 proxyDict (dict):A proxy dict of format `{protocol:address}`
         """
-        if not self.checkCache(self.latest):
+        if cache.checkExpiry(self.expiry):
             self.update()
         if self.autoRotate == True:
             return choice(self.proxies)
         else:
             return self.current
+
+from time import sleep
+a = Proxy(cachePeriod=1,maxProxies=1)
+while True:
+	print(a.proxy())
+	sleep(1)
