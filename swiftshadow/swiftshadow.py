@@ -26,7 +26,7 @@ class Proxy:
                 protocol: HTTP/HTTPS protocol to filter proxies.
                 maxProxies: Maximum number of proxies to store and rotate from.
                 autoRotate: Rotates proxy when `Proxy.proxy()` function is called.
-                cachePeriod: Time to cache proxies in minutes.
+                cachePeriod: Time to cache proxies in seconds.
 
         Returns:
                 proxyClass (swiftshadow.Proxy): `swiftshadow.Proxy` class instance
@@ -45,6 +45,7 @@ class Proxy:
         self.maxProxies = maxProxies
         self.autoRotate = autoRotate
         self.cachePeriod = cachePeriod
+
         self.update()
 
     def checkIp(self, ip, cc, protocol):

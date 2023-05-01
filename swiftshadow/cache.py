@@ -4,7 +4,7 @@ from time import sleep
 
 def getExpiry(expiryIn):
     now = datetime.now(timezone.utc)
-    expiry = now + timedelta(minutes=expiryIn)
+    expiry = now + timedelta(seconds=expiryIn)
     return expiry
 
 
