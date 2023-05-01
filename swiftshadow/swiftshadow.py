@@ -1,7 +1,7 @@
 from requests import get
 from random import choice
 from datetime import datetime, timezone, timedelta
-from pickle import dump, load
+from json import dump, load
 from swiftshadow.helpers import log
 from swiftshadow.providers import Proxyscrape, Scrapingant
 import swiftshadow.cache as cache
@@ -63,9 +63,9 @@ class Proxy:
 
     def update(self):
         try:
-            with open(".swiftshadow.dat", "rb") as file:
+            with open(".swiftshadow.json", "r") as file:
                 data = load(file)
-                self.expiry = data[0]
+                self.expiry = datetime.fromisoformat(data[0])
                 expired = cache.checkExpiry(self.expiry)
             if not expired:
                 log(
@@ -86,17 +86,15 @@ class Proxy:
         self.proxies = []
         self.proxies.extend(Proxyscrape(self.maxProxies, self.countries, self.protocol))
         if len(self.proxies) != self.maxProxies:
-            self.proxies.extend(
-                Scrapingant(self.maxProxies, self.countries, self.protocol)
-            )
+            self.proxies.extend(Scrapingant(self.maxProxies, self.countries, self.protocol))
         if len(self.proxies) == 0:
             log(
                 "warn",
                 "No proxies found for current settings. To prevent runtime error updating the proxy list again.",
             )
             self.update()
-        with open(".swiftshadow.dat", "wb") as file:
-            dump([cache.getExpiry(self.cachePeriod), self.proxies], file)
+        with open(".swiftshadow.json", "w") as file:
+            dump([cache.getExpiry(self.cachePeriod).isoformat(), self.proxies], file)
         self.current = self.proxies[0]
 
     def rotate(self):
