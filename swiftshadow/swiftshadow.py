@@ -125,11 +125,3 @@ class Proxy:
             return choice(self.proxies)
         else:
             return self.current
-
-
-from time import sleep
-
-a = Proxy(cachePeriod=1, maxProxies=1)
-while True:
-    print(a.proxy())
-    sleep(1)
