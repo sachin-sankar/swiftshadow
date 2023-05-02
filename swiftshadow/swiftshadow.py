@@ -26,7 +26,7 @@ class Proxy:
                 protocol: HTTP/HTTPS protocol to filter proxies.
                 maxProxies: Maximum number of proxies to store and rotate from.
                 autoRotate: Rotates proxy when `Proxy.proxy()` function is called.
-                cachePeriod: Time to cache proxies in seconds.
+                cachePeriod: Time to cache proxies in minutes.
 
         Returns:
                 proxyClass (swiftshadow.Proxy): `swiftshadow.Proxy` class instance
@@ -66,7 +66,7 @@ class Proxy:
         try:
             with open(".swiftshadow.json", "r") as file:
                 data = load(file)
-                self.expiry = datetime.fromisoformat(data[0])
+                self.expiry = data[0]
                 expired = cache.checkExpiry(self.expiry)
             if not expired:
                 log(
@@ -74,6 +74,7 @@ class Proxy:
                     f"Loaded proxies from cache",
                 )
                 self.proxies = data[1]
+                self.expiry = data[0]
                 self.current = self.proxies[0]
                 return
             else:
@@ -97,7 +98,8 @@ class Proxy:
             )
             self.update()
         with open(".swiftshadow.json", "w") as file:
-            dump([cache.getExpiry(self.cachePeriod).isoformat(), self.proxies], file)
+            self.expiry = cache.getExpiry(self.cachePeriod).isoformat()
+            dump([self.expiry, self.proxies], file)
         self.current = self.proxies[0]
 
     def rotate(self):
