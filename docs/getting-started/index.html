@@ -559,8 +559,12 @@
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">Proxy</span><span class="p">()</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">proxy</span><span class="p">())</span>
-</span></code></pre></div>
-<code>Proxy.proxy()</code> method returns a proxy in dict form. See about it in reference.
+</span></code></pre></div></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the <code>swift.Proxy</code> class instance is created for the first time the <code>Proxy.update()</code> function is called. This method updates the proxy list from Providers so it will take around 10 seconds to do so. This will also repeat after the <code>cachePeriod</code></p>
+</div>
+<p><code>Proxy.proxy()</code> method returns a proxy in dict form. See about it in reference.
 This is the most basic usage of swiftshadow but wait it got more stuff.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
