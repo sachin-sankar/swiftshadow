@@ -47,3 +47,22 @@ def Proxyscrape(max, countries=[], protocol="http"):
         if checkProxy(proxy, []):
             result.append({proxy[1]: proxy[0]})
             count += 1
+
+def Proxyscan(max,countries=[],protocol='https'):
+	result = []
+	count = 0
+	query = f'https://www.proxyscan.io/api/proxy?limit={max}&type={protocol}&format=txt'
+	if countries != []:
+	   query += '&country=' +','.join([i.lower() for i in countries])
+	log("info", "Updating proxies from Proxyscan")
+	ips = get(query).text
+	ips = ips.split('\n')[:-1]
+	for ip in ips:
+		if count == max:
+		      return result
+		proxy = [ip.strip(), protocol, "all"]
+		if checkProxy(proxy, []):
+		          result.append({proxy[1]: proxy[0]})
+		          count += 1
+
+Providers = [Proxyscrape,Scrapingant,Proxyscan]
