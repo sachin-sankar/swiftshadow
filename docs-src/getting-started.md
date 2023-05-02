@@ -7,6 +7,9 @@ swift = Proxy()
 
 print(swift.proxy())
 ```
+!!! note
+    When the `swift.Proxy` class instance is created for the first time the `Proxy.update()` function is called. This method updates the proxy list from Providers so it will take around 10 seconds to do so. This will also repeat after the `cachePeriod`
+
 `Proxy.proxy()` method returns a proxy in dict form. See about it in reference.
 This is the most basic usage of swiftshadow but wait it got more stuff.
 
