@@ -1,4 +1,4 @@
 from os import system
 
 # Build Package Locally
-system('pip install -e .')
+system("pip install -e .")
