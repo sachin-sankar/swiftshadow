@@ -1,7 +1,7 @@
 from requests import get
 from random import choice
 from datetime import datetime, timezone, timedelta
-from pickle import dump, load
+from json import dump, load
 from swiftshadow.helpers import log
 from swiftshadow.providers import Proxyscrape, Scrapingant
 import swiftshadow.cache as cache
@@ -26,7 +26,7 @@ class Proxy:
                 protocol: HTTP/HTTPS protocol to filter proxies.
                 maxProxies: Maximum number of proxies to store and rotate from.
                 autoRotate: Rotates proxy when `Proxy.proxy()` function is called.
-                cachePeriod: Time to cache proxies in minutes.
+                cachePeriod: Time to cache proxies in seconds.
 
         Returns:
                 proxyClass (swiftshadow.Proxy): `swiftshadow.Proxy` class instance
@@ -45,6 +45,7 @@ class Proxy:
         self.maxProxies = maxProxies
         self.autoRotate = autoRotate
         self.cachePeriod = cachePeriod
+
         self.update()
 
     def checkIp(self, ip, cc, protocol):
@@ -63,9 +64,9 @@ class Proxy:
 
     def update(self):
         try:
-            with open(".swiftshadow.dat", "rb") as file:
+            with open(".swiftshadow.json", "r") as file:
                 data = load(file)
-                self.expiry = data[0]
+                self.expiry = datetime.fromisoformat(data[0])
                 expired = cache.checkExpiry(self.expiry)
             if not expired:
                 log(
@@ -95,8 +96,8 @@ class Proxy:
                 "No proxies found for current settings. To prevent runtime error updating the proxy list again.",
             )
             self.update()
-        with open(".swiftshadow.dat", "wb") as file:
-            dump([cache.getExpiry(self.cachePeriod), self.proxies], file)
+        with open(".swiftshadow.json", "w") as file:
+            dump([cache.getExpiry(self.cachePeriod).isoformat(), self.proxies], file)
         self.current = self.proxies[0]
 
     def rotate(self):
@@ -125,11 +126,3 @@ class Proxy:
             return choice(self.proxies)
         else:
             return self.current
-
-
-from time import sleep
-
-a = Proxy(cachePeriod=1, maxProxies=1)
-while True:
-    print(a.proxy())
-    sleep(1)
