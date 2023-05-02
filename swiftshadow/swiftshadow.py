@@ -87,7 +87,9 @@ class Proxy:
         self.proxies = []
         self.proxies.extend(Proxyscrape(self.maxProxies, self.countries, self.protocol))
         if len(self.proxies) != self.maxProxies:
-            self.proxies.extend(Scrapingant(self.maxProxies, self.countries, self.protocol))
+            self.proxies.extend(
+                Scrapingant(self.maxProxies, self.countries, self.protocol)
+            )
         if len(self.proxies) == 0:
             log(
                 "warn",
