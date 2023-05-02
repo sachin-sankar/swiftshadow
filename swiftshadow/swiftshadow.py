@@ -93,7 +93,7 @@ class Proxy:
             )
         if len(self.proxies) == 0:
             log(
-                "warn",
+                "warning",
                 "No proxies found for current settings. To prevent runtime error updating the proxy list again.",
             )
             self.update()
