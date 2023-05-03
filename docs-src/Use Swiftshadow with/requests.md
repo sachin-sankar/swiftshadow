@@ -9,4 +9,4 @@ resp = get('https://ip.me',proxies=swift.proxy())
 print(resp.text)
 
 ```
-Hopefully you should a `ipv6` address that is not yours.
+Hopefully you should get a `ipv6` address that is not yours.
