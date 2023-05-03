@@ -5,11 +5,7 @@ plugins:
     - mkdocstrings
     - search
 
-nav:
-    - Introduction: index.md
-    - Getting Started: getting-started.md
-    - Reference: references.md
-    - Proxy Providers: providers.md
+
 
 repo_url: https://github.com/sachin-sankar/swiftshadow
 repo_name: sachin-sankar/swiftshadow
