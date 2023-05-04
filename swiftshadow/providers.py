@@ -27,6 +27,7 @@ def Scrapingant(max, countries=[], protocol="http"):
             count += 1
     return result
 
+
 def Proxyscrape(max, countries=[], protocol="http"):
     result = []
     count = 0
@@ -47,4 +48,5 @@ def Proxyscrape(max, countries=[], protocol="http"):
             count += 1
     return result
 
-Providers = [Proxyscrape,Scrapingant]
+
+Providers = [Proxyscrape, Scrapingant]
