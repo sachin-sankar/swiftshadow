@@ -1,11 +1,6 @@
 from swiftshadow.constants import CountryCodes
 from requests import get
-import logging
-
-logging.basicConfig(
-    format="%(asctime)s - [swiftshadow] - %(levelname)s - %(message)s", level=20
-)
-
+from datetime import datetime
 
 def getCountryCode(countryName):
     try:
@@ -33,5 +28,4 @@ def checkProxy(proxy, countries):
 
 def log(level, message):
     level = level.upper()
-    levels = {"INFO": 20, "WARNING": 30, "ERROR": 40}
-    logging.log(levels[level], message)
+    print(f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")} - [swiftshadow] - {level} : {message}')
