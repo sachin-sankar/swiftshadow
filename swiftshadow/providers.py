@@ -26,6 +26,7 @@ def Scrapingant(max, countries=[], protocol="http"):
         if checkProxy(cleaned, countries):
             result.append({cleaned[1]: cleaned[0]})
             count += 1
+    return result
 
 
 def Proxyscrape(max, countries=[], protocol="http"):
@@ -47,3 +48,7 @@ def Proxyscrape(max, countries=[], protocol="http"):
         if checkProxy(proxy, []):
             result.append({proxy[1]: proxy[0]})
             count += 1
+    return result
+
+
+Providers = [Proxyscrape, Scrapingant]
