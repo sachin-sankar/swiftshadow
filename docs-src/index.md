@@ -19,7 +19,7 @@ Everything in swiftshadow is under one class for ease of use and minimal code.
 
 Get a proxy using just 2 lines of code!
 ``` py
-from swiftshadow.swiftshadow import QuickProxy
+from swiftshadow import QuickProxy
 
 print(QuickProxy())
 ```

@@ -1,5 +1,5 @@
 ## `swiftshadow.Proxy`
-::: swiftshadow.swiftshadow.Proxy
+::: swiftshadow.classes.Proxy
 
 ## `swiftshadow.QuickProxy`
-::: swiftshadow.swiftshadow.QuickProxy
+::: swiftshadow.QuickProxy
