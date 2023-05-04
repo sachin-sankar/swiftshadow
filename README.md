@@ -19,12 +19,11 @@ pip install swiftshadow
 ## One class rules all
 Everything in swiftshadow is under one class for ease of use and minimal code.
 
-Get a proxy using just 3 lines of code!
+Get a proxy using just 2 lines of code!
 ``` py
-from swiftshadow.swiftshadow import Proxy
+from swiftshadow.swiftshadow import QuickProxy
 
-swift = Proxy()
-print(swift.proxy())
+print(QuickProxy())
 ```
 That was easy. 
 
