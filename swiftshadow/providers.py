@@ -6,7 +6,6 @@ def Scrapingant(max, countries=[], protocol="http"):
     result = []
     count = 0
     raw = get("https://scrapingant.com/proxies").text
-    log("info", "Updating proxies from ScrapingAnt")
     rows = [i.split("<td>") for i in raw.split("<tr>")]
 
     def clean(text):
@@ -32,7 +31,6 @@ def Proxyscrape(max, countries=[], protocol="http"):
     result = []
     count = 0
     query = "https://api.proxyscrape.com/v2/?timeout=5000&request=displayproxies&protocol=http"
-    log("info", "Updating proxies from Proxyscrape")
     if countries == []:
         query += "&country=all"
     else:
