@@ -128,3 +128,30 @@ class Proxy:
             return choice(self.proxies)
         else:
             return self.current
+            
+class QuickProxy():
+	'''
+	This class is a faster alternative to `Proxy` class.
+	No caching is done.
+	
+	Args:
+                countries: ISO 3166-2 Two letter country codes to filter proxies.
+                protocol: HTTP/HTTPS protocol to filter proxies.
+    
+    Returns:
+    	QuickProxyInstance (swiftshadow.QuickProxy) : `class instance`
+	'''
+	def __init__(self,countries: list = [],protocol: str = 'http'):
+		self.countries = countries
+		self.protocol = protocol
+		self.proxy()
+	
+	def proxy(self):
+		'''
+		Returns:
+			proxyObject (dict) : A working proxy object.
+		'''
+		try:
+			return Proxyscrape(1,countries=self.countries,protocol=self.protocol)[0]
+		except:
+			return Scrapingant(1,countries=self.countries,protocol=self.protocol)[0]
