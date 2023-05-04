@@ -135,11 +135,11 @@ def QuickProxy(countries: list = [],protocol: str = 'http'):
 	No caching is done.
 	
 	Args:
-                countries: ISO 3166-2 Two letter country codes to filter proxies.
-                protocol: HTTP/HTTPS protocol to filter proxies.
+         countries: ISO 3166-2 Two letter country codes to filter proxies.
+         protocol: HTTP/HTTPS protocol to filter proxies.
  
 	Returns:
-			proxyObject (dict) : A working proxy object.
+			proxyObject (dict): A working proxy object.
 	'''
 	try:
 		return Proxyscrape(1,countries=countries,protocol=protocol)[0]
