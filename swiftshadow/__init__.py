@@ -1,4 +1,7 @@
+from requests import get
+
 from swiftshadow.providers import Proxyscrape, Scrapingant
+
 
 
 def QuickProxy(countries: list = [],protocol: str = 'http'):
@@ -16,4 +19,4 @@ def QuickProxy(countries: list = [],protocol: str = 'http'):
 	try:
 		return Proxyscrape(1,countries=countries,protocol=protocol)[0]
 	except:
-		return Scrapingant(1,countries=countries,protocol=protocol)[0]
+		return Scrapingant(1,countries=countries,protocol=protocol)[0]	
