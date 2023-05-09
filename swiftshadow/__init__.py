@@ -1,4 +1,4 @@
-from requests import get
+
 
 from swiftshadow.providers import Proxyscrape, Scrapingant
 
