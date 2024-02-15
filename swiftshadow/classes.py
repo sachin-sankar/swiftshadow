@@ -48,7 +48,7 @@ class Proxy:
         self.maxProxies = maxProxies
         self.autoRotate = autoRotate
         self.cachePeriod = cachePeriod
-        if cacheFolder != "":
+        if cacheFolder == "":
             self.cacheFilePath = ".swiftshadow.json"
         else:
             self.cacheFilePath = f"{cacheFolder}/.swiftshadow.json"
