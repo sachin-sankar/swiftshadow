@@ -1,5 +1,5 @@
 from requests import get
-from swiftshadow.helpers import getCountryCode, checkProxy, log
+from swiftshadow.helpers import getCountryCode, checkProxy
 
 
 def Scrapingant(max, countries=[], protocol="http"):
