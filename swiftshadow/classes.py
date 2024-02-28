@@ -1,6 +1,5 @@
 from requests import get
 from random import choice
-from datetime import datetime, timezone, timedelta
 from json import dump, load
 from swiftshadow.helpers import log
 from swiftshadow.providers import Proxyscrape, Scrapingant, Providers
@@ -78,7 +77,7 @@ class Proxy:
             if not expired:
                 log(
                     "info",
-                    f"Loaded proxies from cache",
+                    "Loaded proxies from cache",
                 )
                 self.proxies = data[1]
                 self.expiry = data[0]
@@ -87,7 +86,7 @@ class Proxy:
             else:
                 log(
                     "info",
-                    f"Cache expired. Updating cache...",
+                    "Cache expired. Updating cache...",
                 )
         except FileNotFoundError:
             log("error", "No cache found. Cache will be created after update")
