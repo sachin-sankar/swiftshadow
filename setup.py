@@ -10,12 +10,6 @@ from pathlib import Path
 this_directory = Path(__file__).parent
 
 long_description = (this_directory / "README.md").read_text()
-VERSION = {}
-
-with open("./swiftshadow/__init__.py") as fp:
-    # pylint: disable=W0122
-
-    exec(fp.read(), VERSION)
 
 setup(
     name="swiftshadow",
@@ -25,7 +19,7 @@ setup(
     description="Free IP Proxy rotator for python",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    version=VERSION.get("__version__", "1.0.0"),
+    version="1.0.1",
     packages=find_packages(where=".", exclude=["tests"]),
     install_requires=["requests"],
     classifiers=[
