@@ -1,10 +1,8 @@
 from requests import get
 from random import choice
 from json import dump, load
-from swiftshadow.helpers import log
 from swiftshadow.providers import Proxyscrape, Scrapingant, Providers
 import swiftshadow.cache as cache
-import os
 import logging
 import sys
 

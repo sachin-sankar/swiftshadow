@@ -1,6 +1,5 @@
 from swiftshadow.constants import CountryCodes
 from requests import get
-from datetime import datetime
 
 
 def getCountryCode(countryName):
@@ -23,12 +22,4 @@ def checkProxy(proxy, countries):
             return True
         return False
     except Exception as e:
-        # log('error',str(e))
         return False
-
-
-def log(level, message):
-    level = level.upper()
-    print(
-        f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")} - [swiftshadow] - {level} : {message}'
-    )
