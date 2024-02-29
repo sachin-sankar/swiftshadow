@@ -5,7 +5,15 @@ from swiftshadow.helpers import log
 from swiftshadow.providers import Proxyscrape, Scrapingant, Providers
 import swiftshadow.cache as cache
 import os
+import logging
+import sys
 
+logger = logging.getLogger('swiftshadow')
+logger.setLevel(logging.INFO)
+logFormat = logging.Formatter('%(asctime)s - %(name)s [%(levelname)s]:%(message)s')
+streamhandler = logging.StreamHandler(stream=sys.stdout)
+streamhandler.setFormatter(logFormat)
+logger.addHandler(streamhandler)
 
 class Proxy:
     def __init__(
@@ -75,8 +83,7 @@ class Proxy:
                 self.expiry = data[0]
                 expired = cache.checkExpiry(self.expiry)
             if not expired:
-                log(
-                    "info",
+                logger.info(
                     "Loaded proxies from cache",
                 )
                 self.proxies = data[1]
@@ -84,12 +91,11 @@ class Proxy:
                 self.current = self.proxies[0]
                 return
             else:
-                log(
-                    "info",
-                    "Cache expired. Updating cache...",
+                logger.info(
+                    "Cache expired. Updating cache.",
                 )
         except FileNotFoundError:
-            log("error", "No cache found. Cache will be created after update")
+            logger.info("No cache found. Cache will be created after update")
 
         self.proxies = []
         self.proxies.extend(Proxyscrape(self.maxProxies, self.countries, self.protocol))
@@ -98,8 +104,7 @@ class Proxy:
                 Scrapingant(self.maxProxies, self.countries, self.protocol)
             )
         if len(self.proxies) == 0:
-            log(
-                "warning",
+            logger.warning(
                 "No proxies found for current settings. To prevent runtime error updating the proxy list again.",
             )
             self.update()
