@@ -1,5 +1,4 @@
 from datetime import datetime, timezone, timedelta
-from time import sleep
 
 
 def getExpiry(expiryIn):
