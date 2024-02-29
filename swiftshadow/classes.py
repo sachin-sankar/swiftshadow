@@ -153,32 +153,3 @@ class Proxy:
             return choice(self.proxies)
         else:
             return self.current
-
-
-class ProxyChains:
-    def __init__(
-        self, countries: list = [], protocol: str = "http", maxProxies: int = 10
-    ):
-        self.countries = [i.upper() for i in countries]
-        self.protocol = protocol
-        self.maxProxies = maxProxies
-        self.update()
-
-    def update(self):
-        proxies = []
-        for provider in Providers:
-            print(len(proxies))
-            if len(proxies) == self.maxProxies:
-                break
-            log("INFO", f"{provider}")
-            for proxyDict in provider(self.maxProxies, self.countries, self.protocol):
-                proxyRaw = list(proxyDict.items())[0]
-                proxy = f'{proxyRaw[0]} {proxyRaw[1].replace(":"," ")}'
-                proxies.append(proxy)
-        proxies = "\n".join(proxies)
-        configFileName = "swiftshadow-proxychains.conf"
-        config = f"random_chain\nchain_len=1\nproxy_dns\n[ProxyList]\n{proxies}"
-        with open(configFileName, "w") as file:
-            file.write(config)
-        cmd = f"proxychains -f {os.path.abspath(configFileName)}"
-        os.system(cmd)
