@@ -8,12 +8,13 @@ import os
 import logging
 import sys
 
-logger = logging.getLogger('swiftshadow')
+logger = logging.getLogger("swiftshadow")
 logger.setLevel(logging.INFO)
-logFormat = logging.Formatter('%(asctime)s - %(name)s [%(levelname)s]:%(message)s')
+logFormat = logging.Formatter("%(asctime)s - %(name)s [%(levelname)s]:%(message)s")
 streamhandler = logging.StreamHandler(stream=sys.stdout)
 streamhandler.setFormatter(logFormat)
 logger.addHandler(streamhandler)
+
 
 class Proxy:
     def __init__(
@@ -25,7 +26,7 @@ class Proxy:
         cachePeriod: int = 10,
         cacheFolder: str = "",
         debug: bool = False,
-        logToFile: bool = False, 
+        logToFile: bool = False,
     ):
         """
         The one class for everything.
