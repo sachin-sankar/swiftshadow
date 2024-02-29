@@ -24,6 +24,8 @@ class Proxy:
         autoRotate: bool = False,
         cachePeriod: int = 10,
         cacheFolder: str = "",
+        debug: bool = False,
+        logToFile: bool = False, 
     ):
         """
         The one class for everything.
@@ -37,6 +39,8 @@ class Proxy:
                 autoRotate: Rotates proxy when `Proxy.proxy()` function is called.
                 cachePeriod: Time to cache proxies in minutes.
                 cacheFolder: Folder to store cache file.
+                debug: Sets Log Level to Debug.
+                logToFile: Whether to pipe log to a log file. If cacheFolder is set log file is saved there.
 
         Returns:
                 proxyClass (swiftshadow.Proxy): `swiftshadow.Proxy` class instance
@@ -59,7 +63,16 @@ class Proxy:
             self.cacheFilePath = ".swiftshadow.json"
         else:
             self.cacheFilePath = f"{cacheFolder}/.swiftshadow.json"
-
+        if debug:
+            logger.setLevel(logging.DEBUG)
+        if logToFile:
+            if cacheFolder == "":
+                logFilePath = "swiftshadow.log"
+            else:
+                logFilePath = f"{cacheFolder}/swiftshadow.log"
+            fileHandler = logging.FileHandler(logFilePath)
+            fileHandler.setFormatter(logFormat)
+            logger.addHandler(fileHandler)
         self.update()
 
     def checkIp(self, ip, cc, protocol):
