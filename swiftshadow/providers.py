@@ -16,4 +16,4 @@ def Monosans(max, countries=[],protocol="http"):
                 results.append(proxy)
                 count += 1
             
-Providers = [Monosans]
+Providers = [{'provider':Monosans,'countryFilter':True,'protocols':['http']}]
