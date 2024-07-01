@@ -16,5 +16,23 @@ def Monosans(max, countries=[],protocol="http"):
                 results.append(proxy)
                 count += 1
     return results
+
+def Thespeedx(max,countries=[],protocol='http'):
+    results = []
+    count =0
+    raw = get('https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt').text
+    for line in raw.splitlines():
+        if count == max:
+            break
+        proxy = [line,'http',None]
+        if checkProxy(proxy):
+            results.append(proxy)
+            print(proxy,True)
+            count +=1
+        else:
+            print(proxy,False)
+    return results
+        
             
-Providers = [{'provider':Monosans,'countryFilter':True,'protocols':['http']}]
+
+Providers = [{'provider':Monosans,'countryFilter':True,'protocols':['http']},{'provider':Thespeedx,'countryFilter':False,'protocols':['http']}]
