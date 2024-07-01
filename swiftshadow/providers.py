@@ -1,52 +1,19 @@
 from requests import get
-from swiftshadow.helpers import getCountryCode, checkProxy
+from swiftshadow.helpers import checkProxy
 
-
-def Scrapingant(max, countries=[], protocol="http"):
-    result = []
+def Monosans(max, countries=[],protocol="http"):
+    raw = get('https://raw.githubusercontent.com/monosans/proxy-list/main/proxies.json').json()
+    results = []
     count = 0
-    raw = get("https://scrapingant.com/proxies").text
-    rows = [i.split("<td>") for i in raw.split("<tr>")]
-
-    def clean(text):
-        return text[: text.find("<")].strip()
-
-    for row in rows[2:]:
+    for proxy in raw:
         if count == max:
-            return result
-        zprotocol = clean(row[3]).lower()
-        if zprotocol != protocol:
-            continue
-        cleaned = [
-            clean(row[1]) + ":" + clean(row[2]),
-            protocol,
-            getCountryCode(clean(row[4].split(" ", 1)[1])),
-        ]
-        if checkProxy(cleaned, countries):
-            result.append({cleaned[1]: cleaned[0]})
-            count += 1
-    return result
-
-
-def Proxyscrape(max, countries=[], protocol="http"):
-    result = []
-    count = 0
-    query = "https://api.proxyscrape.com/v2/?timeout=5000&request=displayproxies&protocol=http"
-    if countries == []:
-        query += "&country=all"
-    else:
-        query += "&country=" + ",".join(countries)
-    if protocol == "https":
-        query += "&ssl=yes"
-    ips = get(query).text
-    for ip in ips.split("\n"):
-        if count == max:
-            return result
-        proxy = [ip.strip(), protocol, "all"]
-        if checkProxy(proxy, []):
-            result.append({proxy[1]: proxy[0]})
-            count += 1
-    return result
-
-
-Providers = [Proxyscrape, Scrapingant]
+            return results
+        if proxy['protocol'] == protocol:
+            if len(countries) != 0 and proxy['geolocation']['country']['iso_code'] not in countries:
+                return
+            proxy = [f'{proxy['host']}:{proxy['port']}',proxy['protocol'],proxy['geolocation']['country']['iso_code']]
+            if checkProxy(proxy):
+                results.append(proxy)
+                count += 1
+            
+Providers = [Monosans]
