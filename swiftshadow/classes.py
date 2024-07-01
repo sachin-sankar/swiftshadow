@@ -54,19 +54,6 @@ class Proxy:
 
         self.update()
 
-    def checkIp(self, ip, cc, protocol):
-        if (ip[1] == cc or cc == None) and ip[2] == protocol:
-            proxy = {ip[2]: ip[0]}
-            try:
-                oip = get(f"{protocol}://ipinfo.io/ip", proxies=proxy).text
-            except:
-                return False
-            if oip.count(".") == 3 and oip != self.mip:
-                return True
-            else:
-                return False
-        else:
-            return False
 
     def update(self):
         try:
