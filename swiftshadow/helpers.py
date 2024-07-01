@@ -5,7 +5,7 @@ from datetime import datetime
 def checkProxy(proxy):
     proxyDict = {proxy[1]: proxy[0]}
     try:
-        resp = get(f"{proxy[1]}://ipinfo.io/ip", proxies=proxyDict, timeout=2).text
+        resp = get(f"{proxy[1]}://checkip.amazonaws.com", proxies=proxyDict, timeout=2).text
         if resp.count(".") == 3:
             return True
         return False
