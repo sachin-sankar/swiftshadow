@@ -10,10 +10,11 @@ def Monosans(max, countries=[],protocol="http"):
             return results
         if proxy['protocol'] == protocol:
             if len(countries) != 0 and proxy['geolocation']['country']['iso_code'] not in countries:
-                return
+                continue
             proxy = [f'{proxy['host']}:{proxy['port']}',proxy['protocol'],proxy['geolocation']['country']['iso_code']]
             if checkProxy(proxy):
                 results.append(proxy)
                 count += 1
+    return results
             
 Providers = [{'provider':Monosans,'countryFilter':True,'protocols':['http']}]
