@@ -92,8 +92,12 @@ class Proxy:
             log("error", "No cache found. Cache will be created after update")
 
         self.proxies = []
-        for provider in Providers:
-            self.proxies.extend(provider(self.maxProxies, self.countries, self.protocol))
+        for providerDict in Providers:
+            if self.protocol not in providerDict['protocols']:
+                continue
+            if (len(self.countries) !=0) and (not providerDict['countryFilter']):
+                continue
+            self.proxies.extend(providerDict['provider'](self.maxProxies, self.countries, self.protocol))
             if len(self.proxies) >= self.maxProxies:
                 break
         if len(self.proxies) == 0:
