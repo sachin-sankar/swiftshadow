@@ -2,7 +2,7 @@ from requests import get
 from random import choice
 from json import dump, load
 from swiftshadow.helpers import log
-from swiftshadow.providers import Proxyscrape, Scrapingant, Providers
+from swiftshadow.providers import Providers
 import swiftshadow.cache as cache
 import os
 
@@ -92,11 +92,10 @@ class Proxy:
             log("error", "No cache found. Cache will be created after update")
 
         self.proxies = []
-        self.proxies.extend(Proxyscrape(self.maxProxies, self.countries, self.protocol))
-        if len(self.proxies) != self.maxProxies:
-            self.proxies.extend(
-                Scrapingant(self.maxProxies, self.countries, self.protocol)
-            )
+        for provider in Providers:
+            self.proxies.extend(provider(self.maxProxies, self.countries, self.protocol))
+            if len(self.proxies) >= self.maxProxies:
+                break
         if len(self.proxies) == 0:
             log(
                 "warning",
