@@ -75,7 +75,6 @@ class Proxy:
             logger.addHandler(fileHandler)
         self.update()
 
-
     def update(self):
         try:
             with open(self.cacheFilePath, "r") as file:
@@ -99,11 +98,13 @@ class Proxy:
 
         self.proxies = []
         for providerDict in Providers:
-            if self.protocol not in providerDict['protocols']:
+            if self.protocol not in providerDict["protocols"]:
                 continue
-            if (len(self.countries) !=0) and (not providerDict['countryFilter']):
+            if (len(self.countries) != 0) and (not providerDict["countryFilter"]):
                 continue
-            self.proxies.extend(providerDict['provider'](self.maxProxies, self.countries, self.protocol))
+            self.proxies.extend(
+                providerDict["provider"](self.maxProxies, self.countries, self.protocol)
+            )
             if len(self.proxies) >= self.maxProxies:
                 break
         if len(self.proxies) == 0:
