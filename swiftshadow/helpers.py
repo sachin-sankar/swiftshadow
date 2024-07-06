@@ -1,5 +1,4 @@
 from requests import get
-from datetime import datetime
 
 
 def checkProxy(proxy):
@@ -10,7 +9,6 @@ def checkProxy(proxy):
             return True
         return False
     except Exception as e:
-        # log('error',str(e))
         return False
 
 

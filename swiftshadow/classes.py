@@ -4,7 +4,15 @@ from json import dump, load
 from swiftshadow.helpers import log
 from swiftshadow.providers import Providers
 import swiftshadow.cache as cache
-import os
+import logging
+import sys
+
+logger = logging.getLogger("swiftshadow")
+logger.setLevel(logging.INFO)
+logFormat = logging.Formatter("%(asctime)s - %(name)s [%(levelname)s]:%(message)s")
+streamhandler = logging.StreamHandler(stream=sys.stdout)
+streamhandler.setFormatter(logFormat)
+logger.addHandler(streamhandler)
 
 
 class Proxy:
@@ -16,6 +24,8 @@ class Proxy:
         autoRotate: bool = False,
         cachePeriod: int = 10,
         cacheFolder: str = "",
+        debug: bool = False,
+        logToFile: bool = False,
     ):
         """
         The one class for everything.
@@ -29,6 +39,8 @@ class Proxy:
                 autoRotate: Rotates proxy when `Proxy.proxy()` function is called.
                 cachePeriod: Time to cache proxies in minutes.
                 cacheFolder: Folder to store cache file.
+                debug: Sets Log Level to Debug.
+                logToFile: Whether to pipe log to a log file. If cacheFolder is set log file is saved there.
 
         Returns:
                 proxyClass (swiftshadow.Proxy): `swiftshadow.Proxy` class instance
@@ -47,11 +59,20 @@ class Proxy:
         self.maxProxies = maxProxies
         self.autoRotate = autoRotate
         self.cachePeriod = cachePeriod
-        if cacheFolder != "":
+        if cacheFolder == "":
             self.cacheFilePath = ".swiftshadow.json"
         else:
             self.cacheFilePath = f"{cacheFolder}/.swiftshadow.json"
-
+        if debug:
+            logger.setLevel(logging.DEBUG)
+        if logToFile:
+            if cacheFolder == "":
+                logFilePath = "swiftshadow.log"
+            else:
+                logFilePath = f"{cacheFolder}/swiftshadow.log"
+            fileHandler = logging.FileHandler(logFilePath)
+            fileHandler.setFormatter(logFormat)
+            logger.addHandler(fileHandler)
         self.update()
 
 
@@ -62,8 +83,7 @@ class Proxy:
                 self.expiry = data[0]
                 expired = cache.checkExpiry(self.expiry)
             if not expired:
-                log(
-                    "info",
+                logger.info(
                     "Loaded proxies from cache",
                 )
                 self.proxies = data[1]
@@ -71,12 +91,11 @@ class Proxy:
                 self.current = self.proxies[0]
                 return
             else:
-                log(
-                    "info",
-                    "Cache expired. Updating cache...",
+                logger.info(
+                    "Cache expired. Updating cache.",
                 )
         except FileNotFoundError:
-            log("error", "No cache found. Cache will be created after update")
+            logger.info("No cache found. Cache will be created after update")
 
         self.proxies = []
         for providerDict in Providers:
@@ -88,8 +107,7 @@ class Proxy:
             if len(self.proxies) >= self.maxProxies:
                 break
         if len(self.proxies) == 0:
-            log(
-                "warning",
+            logger.warning(
                 "No proxies found for current settings. To prevent runtime error updating the proxy list again.",
             )
             self.update()
@@ -124,32 +142,3 @@ class Proxy:
             return choice(self.proxies)
         else:
             return self.current
-
-
-class ProxyChains:
-    def __init__(
-        self, countries: list = [], protocol: str = "http", maxProxies: int = 10
-    ):
-        self.countries = [i.upper() for i in countries]
-        self.protocol = protocol
-        self.maxProxies = maxProxies
-        self.update()
-
-    def update(self):
-        proxies = []
-        for provider in Providers:
-            print(len(proxies))
-            if len(proxies) == self.maxProxies:
-                break
-            log("INFO", f"{provider}")
-            for proxyDict in provider(self.maxProxies, self.countries, self.protocol):
-                proxyRaw = list(proxyDict.items())[0]
-                proxy = f'{proxyRaw[0]} {proxyRaw[1].replace(":"," ")}'
-                proxies.append(proxy)
-        proxies = "\n".join(proxies)
-        configFileName = "swiftshadow-proxychains.conf"
-        config = f"random_chain\nchain_len=1\nproxy_dns\n[ProxyList]\n{proxies}"
-        with open(configFileName, "w") as file:
-            file.write(config)
-        cmd = f"proxychains -f {os.path.abspath(configFileName)}"
-        os.system(cmd)
