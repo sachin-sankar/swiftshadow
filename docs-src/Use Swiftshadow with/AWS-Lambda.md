@@ -6,4 +6,4 @@ from swiftshadow.classes import Proxy
 swift = Proxy(cacheFolder="tmp")
 ```
 
-If you don't want the caching behaviour try using the [`QuickProxy`](/Getting%20Started/Using-QuickProxy/) function.
+If you don't want the caching behaviour try using the [`QuickProxy`](../Getting%20Started/Using-QuickProxy.md) function.

@@ -1,52 +1,57 @@
 from requests import get
-from swiftshadow.helpers import getCountryCode, checkProxy
+from swiftshadow.helpers import checkProxy
 
-
-def Scrapingant(max, countries=[], protocol="http"):
-    result = []
+def Monosans(max, countries=[],protocol="http"):
+    raw = get('https://raw.githubusercontent.com/monosans/proxy-list/main/proxies.json').json()
+    results = []
     count = 0
-    raw = get("https://scrapingant.com/proxies").text
-    rows = [i.split("<td>") for i in raw.split("<tr>")]
-
-    def clean(text):
-        return text[: text.find("<")].strip()
-
-    for row in rows[2:]:
+    for proxy in raw:
         if count == max:
-            return result
-        zprotocol = clean(row[3]).lower()
-        if zprotocol != protocol:
+            return results
+        if proxy['protocol'] == protocol:
+            if len(countries) != 0 and proxy['geolocation']['country']['iso_code'] not in countries:
+                continue
+            proxy = [f'{proxy['host']}:{proxy['port']}',proxy['protocol']]
+            if checkProxy(proxy):
+                results.append(proxy)
+                count += 1
+    return results
+
+def Thespeedx(max,countries=[],protocol='http'):
+    results = []
+    count =0
+    raw = get('https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt').text
+    for line in raw.splitlines():
+        if count == max:
+            break
+        proxy = [line,'http']
+        if checkProxy(proxy):
+            results.append(proxy)
+            print(proxy,True)
+            count +=1
+        else:
             continue
-        cleaned = [
-            clean(row[1]) + ":" + clean(row[2]),
-            protocol,
-            getCountryCode(clean(row[4].split(" ", 1)[1])),
-        ]
-        if checkProxy(cleaned, countries):
-            result.append({cleaned[1]: cleaned[0]})
-            count += 1
-    return result
-
-
-def Proxyscrape(max, countries=[], protocol="http"):
-    result = []
+    return results
+        
+def ProxyScrape(max,countries=[],protocol='http'):
+    baseUrl = 'https://api.proxyscrape.com/v3/free-proxy-list/get?request=displayproxies&protocol=http&proxy_format=ipport&format=json'
+    results = []
     count = 0
-    query = "https://api.proxyscrape.com/v2/?timeout=5000&request=displayproxies&protocol=http"
-    if countries == []:
-        query += "&country=all"
+    if len(countries) == 0:
+        apiUrl = baseUrl + '&country=all'
     else:
-        query += "&country=" + ",".join(countries)
-    if protocol == "https":
-        query += "&ssl=yes"
-    ips = get(query).text
-    for ip in ips.split("\n"):
+        apiUrl = baseUrl + '&country=' + ','.join([i.upper() for i in countries])
+    raw = get(apiUrl).json()
+    for ipRaw in raw['proxies']:
         if count == max:
-            return result
-        proxy = [ip.strip(), protocol, "all"]
-        if checkProxy(proxy, []):
-            result.append({proxy[1]: proxy[0]})
+            break
+        proxy = [ipRaw['proxy'],'http']  
+        if checkProxy(proxy):
+            results.append(proxy)
             count += 1
-    return result
+        else:
+            print(proxy,False)
+            continue
+    return results          
 
-
-Providers = [Proxyscrape, Scrapingant]
+Providers = [{'provider':Monosans,'countryFilter':True,'protocols':['http']},{'provider':Thespeedx,'countryFilter':False,'protocols':['http']},{'provider':ProxyScrape,'countryFilter':True,'protocols':['http']}]

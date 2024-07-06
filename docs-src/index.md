@@ -25,7 +25,7 @@ print(QuickProxy())
 ```
 That was easy. 
 
-Head to [Getting Started ](/Getting%20Started/Using-Proxy-Class/) to get started on using this awesome library.
+Head to [Getting Started ](Getting Started/Using-Proxy-Class.md) to get started on using this awesome library.
 
 Swiftshadow provides these proxies from freely available providers **Proxyscrape** and **Scrapingant** to whom i am very thankful for.
-Know all things about these [Providers](providers)
+Know all things about these [Providers](providers.md)

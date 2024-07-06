@@ -1,7 +1,8 @@
 from requests import get
 from random import choice
 from json import dump, load
-from swiftshadow.providers import Proxyscrape, Scrapingant, Providers
+from swiftshadow.helpers import log
+from swiftshadow.providers import Providers
 import swiftshadow.cache as cache
 import logging
 import sys
@@ -74,20 +75,6 @@ class Proxy:
             logger.addHandler(fileHandler)
         self.update()
 
-    def checkIp(self, ip, cc, protocol):
-        if (ip[1] == cc or cc == None) and ip[2] == protocol:
-            proxy = {ip[2]: ip[0]}
-            try:
-                oip = get(f"{protocol}://ipinfo.io/ip", proxies=proxy).text
-            except:
-                return False
-            if oip.count(".") == 3 and oip != self.mip:
-                return True
-            else:
-                return False
-        else:
-            return False
-
     def update(self):
         try:
             with open(self.cacheFilePath, "r") as file:
@@ -110,11 +97,16 @@ class Proxy:
             logger.info("No cache found. Cache will be created after update")
 
         self.proxies = []
-        self.proxies.extend(Proxyscrape(self.maxProxies, self.countries, self.protocol))
-        if len(self.proxies) != self.maxProxies:
+        for providerDict in Providers:
+            if self.protocol not in providerDict["protocols"]:
+                continue
+            if (len(self.countries) != 0) and (not providerDict["countryFilter"]):
+                continue
             self.proxies.extend(
-                Scrapingant(self.maxProxies, self.countries, self.protocol)
+                providerDict["provider"](self.maxProxies, self.countries, self.protocol)
             )
+            if len(self.proxies) >= self.maxProxies:
+                break
         if len(self.proxies) == 0:
             logger.warning(
                 "No proxies found for current settings. To prevent runtime error updating the proxy list again.",
