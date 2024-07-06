@@ -58,4 +58,4 @@ print(swift.proxy())
 print(swift.proxy())
 ```
 
-Visit [Refrences](/references) for more information on methods.
+Visit [Refrences](../references.md) for more information on methods.
