@@ -1,6 +1,7 @@
 from requests import get
 from datetime import datetime
 
+
 def checkProxy(proxy):
     proxyDict = {proxy[1]: proxy[0]}
     try:
