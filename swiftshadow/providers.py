@@ -33,6 +33,25 @@ def Thespeedx(max,countries=[],protocol='http'):
             continue
     return results
         
-            
+def ProxyScrape(max,countries=[],protocol='http'):
+    baseUrl = 'https://api.proxyscrape.com/v3/free-proxy-list/get?request=displayproxies&protocol=http&proxy_format=ipport&format=json'
+    results = []
+    count = 0
+    if len(countries) == 0:
+        apiUrl = baseUrl + '&country=all'
+    else:
+        apiUrl = baseUrl + '&country=' + ','.join([i.upper() for i in countries])
+    raw = get(apiUrl).json()
+    for ipRaw in raw['proxies']:
+        if count == max:
+            break
+        proxy = [ipRaw['proxy'],'http',ipRaw['ip_data']['countryCode']]  
+        if checkProxy(proxy):
+            results.append(proxy)
+            count += 1
+        else:
+            print(proxy,False)
+            continue
+    return results          
 
-Providers = [{'provider':Monosans,'countryFilter':True,'protocols':['http']},{'provider':Thespeedx,'countryFilter':False,'protocols':['http']}]
+Providers = [{'provider':Monosans,'countryFilter':True,'protocols':['http']},{'provider':Thespeedx,'countryFilter':False,'protocols':['http']},{'provider':ProxyScrape,'countryFilter':True,'protocols':['http']}]
