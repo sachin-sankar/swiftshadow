@@ -11,7 +11,7 @@ def Monosans(max, countries=[],protocol="http"):
         if proxy['protocol'] == protocol:
             if len(countries) != 0 and proxy['geolocation']['country']['iso_code'] not in countries:
                 continue
-            proxy = [f'{proxy['host']}:{proxy['port']}',proxy['protocol'],proxy['geolocation']['country']['iso_code']]
+            proxy = [f'{proxy['host']}:{proxy['port']}',proxy['protocol']]
             if checkProxy(proxy):
                 results.append(proxy)
                 count += 1
@@ -24,7 +24,7 @@ def Thespeedx(max,countries=[],protocol='http'):
     for line in raw.splitlines():
         if count == max:
             break
-        proxy = [line,'http',None]
+        proxy = [line,'http']
         if checkProxy(proxy):
             results.append(proxy)
             print(proxy,True)
@@ -45,7 +45,7 @@ def ProxyScrape(max,countries=[],protocol='http'):
     for ipRaw in raw['proxies']:
         if count == max:
             break
-        proxy = [ipRaw['proxy'],'http',ipRaw['ip_data']['countryCode']]  
+        proxy = [ipRaw['proxy'],'http']  
         if checkProxy(proxy):
             results.append(proxy)
             count += 1
