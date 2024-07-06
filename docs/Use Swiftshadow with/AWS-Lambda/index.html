@@ -9,8 +9,10 @@
       
       
       
-        <link rel="prev" href="../AWS-Lambda/">
+        <link rel="prev" href="../../Getting%20Started/Using-QuickProxy/">
       
+      
+        <link rel="next" href="../requests/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -18,7 +20,7 @@
     
     
       
-        <title>Requests - Swiftshadow</title>
+        <title>AWS Lambda - Swiftshadow</title>
       
     
     
@@ -102,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Requests
+              AWS Lambda
             
           </span>
         </div>
@@ -286,7 +288,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../AWS-Lambda/" class="md-tabs__link">
+        <a href="./" class="md-tabs__link">
           
   
   Use Swiftshadow with
@@ -545,27 +547,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../AWS-Lambda/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    AWS Lambda
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -580,12 +561,33 @@
         
   
   <span class="md-ellipsis">
-    Requests
+    AWS Lambda
   </span>
   
 
       </a>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Requests
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -632,16 +634,14 @@
   
 
 
-  <h1>Requests</h1>
+  <h1>AWS Lambda</h1>
 
-<p>Swiftshadow integrates very well with <code>requests</code> library and can be used with it seamlessly.</p>
-<p><div class="language-py highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">swiftshadow</span> <span class="kn">import</span> <span class="n">QuickProxy</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">requests</span> <span class="kn">import</span> <span class="n">get</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">proxy</span> <span class="o">=</span> <span class="n">QuickProxy</span><span class="p">()</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://checkip.amazonaws.com&#39;</span><span class="p">,</span><span class="n">proxies</span><span class="o">=</span><span class="p">{</span><span class="n">proxy</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">proxy</span><span class="p">[</span><span class="mi">0</span><span class="p">]})</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<p>Using swiftshadow with AWS Lambda normally would raise an error as the cache mechanism wont work properly due to the read only file permission. To fix this you can pass <code>cacheFolder="tmp"</code> when creating a <code>Proxy</code> class.</p>
+<div class="language-py highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span> <span class="nn">swiftshadow.classes</span> <span class="kn">import</span> <span class="n">Proxy</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">Proxy</span><span class="p">(</span><span class="n">cacheFolder</span><span class="o">=</span><span class="s2">&quot;tmp&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-Hopefully you should get a <code>ipv4</code> address that is not yours.</p>
+<p>If you don't want the caching behaviour try using the <a href="../../Getting%20Started/Using-QuickProxy/"><code>QuickProxy</code></a> function.</p>
 
 
 
@@ -671,7 +671,7 @@ Hopefully you should get a <code>ipv4</code> address that is not yours.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../AWS-Lambda/" class="md-footer__link md-footer__link--prev" aria-label="Previous: AWS Lambda">
+          <a href="../../Getting%20Started/Using-QuickProxy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Using QuickProxy">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
@@ -681,11 +681,27 @@ Hopefully you should get a <code>ipv4</code> address that is not yours.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                AWS Lambda
+                Using QuickProxy
               </div>
             </div>
           </a>
         
+        
+          
+          <a href="../requests/" class="md-footer__link md-footer__link--next" aria-label="Next: Requests">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Requests
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
         
       </nav>
     
