@@ -30,7 +30,7 @@ def Thespeedx(max,countries=[],protocol='http'):
             print(proxy,True)
             count +=1
         else:
-            print(proxy,False)
+            continue
     return results
         
             
