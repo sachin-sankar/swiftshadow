@@ -11,7 +11,7 @@ def Monosans(max, countries=[],protocol="http"):
         if proxy['protocol'] == protocol:
             if len(countries) != 0 and proxy['geolocation']['country']['iso_code'] not in countries:
                 continue
-            proxy = [f'{proxy['host']}:{proxy['port']}',proxy['protocol']]
+            proxy = [f'{proxy["host"]}:{proxy["port"]}',proxy['protocol']]
             if checkProxy(proxy):
                 results.append(proxy)
                 count += 1
