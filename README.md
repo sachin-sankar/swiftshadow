@@ -21,7 +21,7 @@ Finally, Swiftshadow has a low dependency on third-party libraries (only one), w
 
 To get started install the library using pip.
 
-``` py
+```py
 pip install swiftshadow
 ```
 
@@ -31,8 +31,8 @@ Everything in swiftshadow is under one class for ease of use and minimal code.
 
 Get a proxy using just 2 lines of code!
 
-``` py
-from swiftshadow.swiftshadow import QuickProxy
+```py
+from swiftshadow import QuickProxy
 
 print(QuickProxy())
 ```
