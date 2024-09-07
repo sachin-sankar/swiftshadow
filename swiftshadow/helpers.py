@@ -1,5 +1,6 @@
-from requests import get
 from datetime import datetime
+
+from requests import get
 
 
 def checkProxy(proxy):
@@ -11,7 +12,7 @@ def checkProxy(proxy):
         if resp.count(".") == 3:
             return True
         return False
-    except Exception as e:
+    except Exception:
         return False
 
 

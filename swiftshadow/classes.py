@@ -1,11 +1,10 @@
-from requests import get
-from random import choice
-from json import dump, load
-from swiftshadow.helpers import log
-from swiftshadow.providers import Providers
-import swiftshadow.cache as cache
 import logging
 import sys
+from json import dump, load
+from random import choice
+
+import swiftshadow.cache as cache
+from swiftshadow.providers import Providers
 
 logger = logging.getLogger("swiftshadow")
 logger.setLevel(logging.INFO)
@@ -139,7 +138,7 @@ class Proxy:
         """
         if cache.checkExpiry(self.expiry):
             self.update()
-        if self.autoRotate == True:
+        if self.autoRotate:
             return choice(self.proxies)
         else:
             return self.current

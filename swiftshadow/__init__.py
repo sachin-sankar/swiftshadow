@@ -20,6 +20,6 @@ def QuickProxy(countries: list = [], protocol: str = "http"):
             continue
         try:
             return providerDict["provider"](1, countries, protocol)[0]
-        except:
+        except Exception:
             continue
     return None
