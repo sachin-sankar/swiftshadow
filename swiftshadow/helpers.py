@@ -19,5 +19,5 @@ def checkProxy(proxy):
 def log(level, message):
     level = level.upper()
     print(
-        f'{datetime.now().strftime("%d/%m/%Y %H:%M:%S")} - [swiftshadow] - {level} : {message}'
+        f"{datetime.now().strftime('%d/%m/%Y %H:%M:%S')} - [swiftshadow] - {level} : {message}"
     )
