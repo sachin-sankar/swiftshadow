@@ -1,42 +1,83 @@
 # Swiftshadow
 
-![PyPI - Downloads](https://img.shields.io/pypi/dm/swiftshadow) ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/sachin-sankar/swiftshadow?include_prereleases&style=flat)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/swiftshadow)  
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/sachin-sankar/swiftshadow?include_prereleases&style=flat)
 
-> [!TIP]  
-> I'm refactoring the library for better speed and maintainability. Future updates might have breaking changes, but I'll keep you posted!
+> [!WARNING]  
+> **Heads up!** If you're using **versions 1.2.1 or below**, please note that **version 2.0.0 and above** includes breaking changes. Before upgrading, read the [documentation](https://sachin-sankar.github.io/swiftshadow/) to understand the changes and ensure compatibility with your code. If you encounter issues, please review the docs before opening a GitHub issue.
 
 ## About
 
-Swiftshadow is a powerful Python library designed to simplify the process of rotating IP proxies for web scraping, data mining, and other automated tasks. With its advanced features, Swiftshadow can help you overcome many of the challenges associated with web scraping, including blocked IP addresses and other forms of detection.
+**Swiftshadow** is a lightweight and efficient Python library designed to simplify IP proxy rotation for web scraping, data mining, and other automated tasks. It helps you bypass common challenges like IP bans, rate limits, and detection mechanisms, ensuring smooth and uninterrupted data collection.
 
-One of the key benefits of Swiftshadow is its speed. The library is designed to operate quickly and efficiently, which means you can scrape data at a faster rate than with other tools. Additionally, Swiftshadow includes a built-in caching mechanism that helps to reduce the load time and improve performance.
+### Key Features
+- **Speed**: Optimized for fast proxy retrieval and rotation.
+- **Reliability**: Automatically switches to working proxies if one fails.
+- **Customization**: Configure proxy filters, rotation frequency, and caching behavior.
+- **Low Dependencies**: Only one third-party dependency (`requests`), making it easy to use and maintain.
+- **Caching**: Built-in caching mechanism to reduce load times and improve performance.
 
-Another important feature of Swiftshadow is its reliability. The library is designed to be robust and resilient, which means that even if one of your proxies fails or is blocked, the system will automatically switch to another proxy to ensure continuity of your scraping process. This feature helps to ensure that your scraping efforts are not interrupted by technical issues or other problems.
+Whether you're a seasoned developer or a beginner, **Swiftshadow** makes proxy management effortless.
 
-Swiftshadow is also highly customizable. You can easily configure the library to suit your specific needs, including specifying the number of proxies to use, the frequency of rotation, and other parameters. This level of flexibility makes Swiftshadow a versatile tool that can be adapted to a wide range of use cases.
-
-Finally, Swiftshadow has a low dependency on third-party libraries (only one), which makes it easier to use and maintain. Whether you are a seasoned developer or a novice, you can quickly get started with Swiftshadow and start scraping data with ease.
+---
 
 ## Installation
 
-To get started install the library using pip.
+Install the library using pip:
 
-```py
+```bash
 pip install swiftshadow
 ```
 
-## One class rules all
+---
 
-Everything in swiftshadow is under one class for ease of use and minimal code.
+## Quick Start
 
-Get a proxy using just 2 lines of code!
+### Get a Proxy in 2 Lines
+Fetch a random proxy with just two lines of code:
 
-```py
+```python
 from swiftshadow import QuickProxy
 
-print(QuickProxy())
+print(QuickProxy())  # Output: http://<ip>:<port>
 ```
 
-That was easy.
+### Advanced Usage
+For more control, use the `ProxyInterface` class:
 
-Head to [Documentation](https://sachin-sankar.github.io/swiftshadow/) to get started.
+```python
+from swiftshadow.classes import ProxyInterface
+
+# Fetch HTTPS proxies from the US
+swift = ProxyInterface(countries=["US"], protocol="https")
+print(swift.get().as_string())  # Output: https://<ip>:<port>
+```
+
+---
+
+## Documentation
+
+Explore the full documentation to learn more about **Swiftshadow**'s features and advanced usage:
+
+📚 [Documentation](https://sachin-sankar.github.io/swiftshadow/)
+
+---
+
+## Why Swiftshadow?
+
+- **Lightweight**: Minimal dependencies and easy to integrate.
+- **Flexible**: Supports filtering by country and protocol.
+- **Scalable**: Ideal for both small scripts and large-scale scraping projects.
+- **Open Source**: Free to use, modify, and contribute to under the MIT License.
+
+---
+
+## Contributing
+
+Contributions are welcome! If you'd like to improve **Swiftshadow**, feel free to open an issue or submit a pull request on [GitHub](https://github.com/sachin-sankar/swiftshadow).
+
+---
+
+## License
+
+**Swiftshadow** is licensed under the MIT License. See the [LICENSE](https://github.com/sachin-sankar/swiftshadow/blob/main/LICENSE) file for details.
