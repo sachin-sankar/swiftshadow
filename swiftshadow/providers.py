@@ -122,6 +122,17 @@ async def Mmpx12(
     return results
 
 
+async def Anonym0usWork1221(
+    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+):
+    raw = get(
+        f"https://github.com/Anonym0usWork1221/Free-Proxies/raw/refs/heads/main/proxy_files/{protocol}_proxies.txt"
+    ).text
+    proxies: list[Proxy] = plaintextToProxies(raw, protocol=protocol)
+    results = await validate_proxies(proxies)
+    return results
+
+
 Providers: list[Provider] = [
     Provider(providerFunction=Monosans, countryFilter=True, protocols=["http"]),
     Provider(providerFunction=Thespeedx, countryFilter=False, protocols=["http"]),
@@ -133,4 +144,9 @@ Providers: list[Provider] = [
         providerFunction=KangProxy, countryFilter=False, protocols=["http", "https"]
     ),
     Provider(providerFunction=Mmpx12, countryFilter=False, protocols=["http", "https"]),
+    Provider(
+        providerFunction=Anonym0usWork1221,
+        countryFilter=False,
+        protocols=["http", "https"],
+    ),
 ]
