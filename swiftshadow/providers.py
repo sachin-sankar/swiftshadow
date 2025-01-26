@@ -143,20 +143,20 @@ async def ProxySpace(
 
 
 Providers: list[Provider] = [
-    Provider(providerFunction=Monosans, countryFilter=True, protocols=["http"]),
-    Provider(providerFunction=Thespeedx, countryFilter=False, protocols=["http"]),
     Provider(providerFunction=ProxyScrape, countryFilter=True, protocols=["http"]),
-    Provider(providerFunction=GoodProxy, countryFilter=False, protocols=["http"]),
-    Provider(providerFunction=OpenProxyList, countryFilter=False, protocols=["http"]),
+    Provider(providerFunction=Monosans, countryFilter=True, protocols=["http"]),
     Provider(providerFunction=MuRongPIG, countryFilter=False, protocols=["http"]),
-    Provider(
-        providerFunction=KangProxy, countryFilter=False, protocols=["http", "https"]
-    ),
-    Provider(providerFunction=Mmpx12, countryFilter=False, protocols=["http", "https"]),
+    Provider(providerFunction=Thespeedx, countryFilter=False, protocols=["http"]),
     Provider(
         providerFunction=Anonym0usWork1221,
         countryFilter=False,
         protocols=["http", "https"],
     ),
+    Provider(providerFunction=Mmpx12, countryFilter=False, protocols=["http", "https"]),
+    Provider(providerFunction=GoodProxy, countryFilter=False, protocols=["http"]),
+    Provider(
+        providerFunction=KangProxy, countryFilter=False, protocols=["http", "https"]
+    ),
     Provider(providerFunction=ProxySpace, countryFilter=False, protocols=["http"]),
+    Provider(providerFunction=OpenProxyList, countryFilter=False, protocols=["http"]),
 ]
