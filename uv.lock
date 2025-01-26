@@ -371,6 +371,18 @@ wheels = [
 ]
 
 [[package]]
+name = "mkdocs-autolinks-plugin"
+version = "0.7.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "mkdocs" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/63/b7/efc75b7870a4fecbc9a05ba94ce622462a40b5a13670d00036c5b47bf82f/mkdocs-autolinks-plugin-0.7.1.tar.gz", hash = "sha256:445ddb9b417b7795856c30801bb430773186c1daf210bdeecf8305f55a47d151", size = 4375 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/d4/9c/ee3d81a799b8b0b73a89625bcbf3c58cd369c8a26a1b415413edea9bf259/mkdocs_autolinks_plugin-0.7.1-py3-none-any.whl", hash = "sha256:5c6c17f6649b68e79a9ef0b2648d59f3072e18002b90ee1586a64c505f11ab12", size = 4235 },
+]
+
+[[package]]
 name = "mkdocs-autorefs"
 version = "1.3.0"
 source = { registry = "https://pypi.org/simple" }
@@ -786,6 +798,7 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "mkdocs" },
+    { name = "mkdocs-autolinks-plugin" },
     { name = "mkdocs-material" },
     { name = "mkdocstrings-python" },
     { name = "pytest" },
@@ -803,6 +816,7 @@ requires-dist = [
 [package.metadata.requires-dev]
 dev = [
     { name = "mkdocs", specifier = ">=1.6.1" },
+    { name = "mkdocs-autolinks-plugin", specifier = ">=0.7.1" },
     { name = "mkdocs-material", specifier = ">=9.5.50" },
     { name = "mkdocstrings-python", specifier = ">=1.13.0" },
     { name = "pytest", specifier = ">=8.3.4" },

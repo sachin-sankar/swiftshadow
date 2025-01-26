@@ -1,0 +1,2 @@
+# QuickProxy Class
+::: swiftshadow.QuickProxy

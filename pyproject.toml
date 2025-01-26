@@ -23,6 +23,7 @@ build-backend = "hatchling.build"
 [dependency-groups]
 dev = [
     "mkdocs>=1.6.1",
+    "mkdocs-autolinks-plugin>=0.7.1",
     "mkdocs-material>=9.5.50",
     "mkdocstrings-python>=1.13.0",
     "pytest>=8.3.4",

@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../Using-Proxy-Class/">
+        <link rel="prev" href="../Using-QuickProxy/">
       
       
-        <link rel="next" href="../examples/">
+        <link rel="next" href="../../Use%20Swiftshadow%20with/AWS-Lambda/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>QuickProxy - Swiftshadow</title>
+        <title>Examples - Swiftshadow</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#quickproxy" class="md-skip">
+        <a href="#examples" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              QuickProxy
+              Examples
             
           </span>
         </div>
@@ -722,6 +722,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../Using-QuickProxy/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    QuickProxy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -738,7 +759,7 @@
           
   
   <span class="md-ellipsis">
-    QuickProxy
+    Examples
   </span>
   
 
@@ -749,7 +770,7 @@
         
   
   <span class="md-ellipsis">
-    QuickProxy
+    Examples
   </span>
   
 
@@ -771,38 +792,191 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#swiftshadow.QuickProxy" class="md-nav__link">
+  <a href="#basic-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;QuickProxy
+      Basic Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fetching-a-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fetching a Proxy
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#returns" class="md-nav__link">
+  <a href="#filtering-proxies" class="md-nav__link">
     <span class="md-ellipsis">
-      Returns
+      Filtering Proxies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtering Proxies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#country-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Country Filter
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#protocol-filter" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      Protocol Filter
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proxy-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proxy Rotation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proxy Rotation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual Rotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatic-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automatic Rotation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Caching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-cache-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Cache Folder
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabling-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disabling Caching
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with Libraries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration with Libraries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-with-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using with requests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-with-httpx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using with httpx
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combining-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combining Filters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-cache-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      Force Cache Update
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -810,27 +984,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../examples/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Examples
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -980,38 +1133,191 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#swiftshadow.QuickProxy" class="md-nav__link">
+  <a href="#basic-usage" class="md-nav__link">
     <span class="md-ellipsis">
-      <code class="doc-symbol doc-symbol-toc doc-symbol-function"></code>&nbsp;QuickProxy
+      Basic Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fetching-a-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fetching a Proxy
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parameters
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#returns" class="md-nav__link">
+  <a href="#filtering-proxies" class="md-nav__link">
     <span class="md-ellipsis">
-      Returns
+      Filtering Proxies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Filtering Proxies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#country-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      Country Filter
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#protocol-filter" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      Protocol Filter
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proxy-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proxy Rotation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proxy Rotation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#manual-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Manual Rotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#automatic-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Automatic Rotation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Caching
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Caching">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-cache-folder" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Cache Folder
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabling-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disabling Caching
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration-with-libraries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Integration with Libraries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration with Libraries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-with-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using with requests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-with-httpx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using with httpx
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Advanced Usage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Advanced Usage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#combining-filters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Combining Filters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#force-cache-update" class="md-nav__link">
+    <span class="md-ellipsis">
+      Force Cache Update
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1033,178 +1339,118 @@
   
 
 
-<h1 id="quickproxy">QuickProxy</h1>
-<p>For faster use cases where caching is not required, the <a href="../../API%20Reference/Classes/quickProxy/"><code>swiftshadow.QuickProxy</code></a> function is the best choice. Unlike the <a href="../../API%20Reference/Classes/proxyInterface/"><code>ProxyInterface</code></a> class, <code>QuickProxy</code> does not cache proxies, making it lightweight and ideal for one-off or quick operations.</p>
-
-
-<div class="doc doc-object doc-function">
-
-
-<h2 id="swiftshadow.QuickProxy" class="doc doc-heading">
-<code class="doc-symbol doc-symbol-heading doc-symbol-function"></code>            <code class="highlight language-python"><span class="n">swiftshadow</span><span class="o">.</span><span class="n">QuickProxy</span><span class="p">(</span><span class="n">countries</span><span class="o">=</span><span class="p">[],</span> <span class="n">protocol</span><span class="o">=</span><span class="s1">&#39;http&#39;</span><span class="p">)</span></code>
-
-</h2>
-
-
-    <div class="doc doc-contents first">
-
-        <p>This function is a faster alternative to <code>ProxyInterface</code> class.
-No caching is done.</p>
-
-
-<p><span class="doc-section-title">Parameters:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-          <th>Default</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td>
-                <code>countries</code>
-            </td>
-            <td>
-                  <code>list[str]</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>ISO 3166-2 Two letter country codes to filter proxies.</p>
-              </div>
-            </td>
-            <td>
-                  <code>[]</code>
-            </td>
-          </tr>
-          <tr class="doc-section-item">
-            <td>
-                <code>protocol</code>
-            </td>
-            <td>
-                  <code><span title="typing.Literal">Literal</span>[&#39;http&#39;, &#39;https&#39;]</code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>HTTP/HTTPS protocol to filter proxies.</p>
-              </div>
-            </td>
-            <td>
-                  <code>&#39;http&#39;</code>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-    <p><span class="doc-section-title">Returns:</span></p>
-    <table>
-      <thead>
-        <tr>
-<th>Name</th>          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-<td><code>proxyObject</code></td>            <td>
-                  <code><a class="autorefs autorefs-internal" title="swiftshadow.models.Proxy" href="../../API%20Reference/Models/proxy/#swiftshadow.models.Proxy">Proxy</a></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>A working proxy object if found or else None.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-            <details class="quote">
-              <summary>Source code in <code>swiftshadow/__init__.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-0-10">10</a></span>
-<span class="normal"><a href="#__codelineno-0-11">11</a></span>
-<span class="normal"><a href="#__codelineno-0-12">12</a></span>
-<span class="normal"><a href="#__codelineno-0-13">13</a></span>
-<span class="normal"><a href="#__codelineno-0-14">14</a></span>
-<span class="normal"><a href="#__codelineno-0-15">15</a></span>
-<span class="normal"><a href="#__codelineno-0-16">16</a></span>
-<span class="normal"><a href="#__codelineno-0-17">17</a></span>
-<span class="normal"><a href="#__codelineno-0-18">18</a></span>
-<span class="normal"><a href="#__codelineno-0-19">19</a></span>
-<span class="normal"><a href="#__codelineno-0-20">20</a></span>
-<span class="normal"><a href="#__codelineno-0-21">21</a></span>
-<span class="normal"><a href="#__codelineno-0-22">22</a></span>
-<span class="normal"><a href="#__codelineno-0-23">23</a></span>
-<span class="normal"><a href="#__codelineno-0-24">24</a></span>
-<span class="normal"><a href="#__codelineno-0-25">25</a></span>
-<span class="normal"><a href="#__codelineno-0-26">26</a></span>
-<span class="normal"><a href="#__codelineno-0-27">27</a></span>
-<span class="normal"><a href="#__codelineno-0-28">28</a></span>
-<span class="normal"><a href="#__codelineno-0-29">29</a></span>
-<span class="normal"><a href="#__codelineno-0-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">QuickProxy</span><span class="p">(</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>    <span class="n">countries</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">protocol</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;http&quot;</span><span class="p">,</span> <span class="s2">&quot;https&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;http&quot;</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Proxy</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="sd">    This function is a faster alternative to `ProxyInterface` class.</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="sd">    No caching is done.</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="sd">    Args:</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="sd">        countries: ISO 3166-2 Two letter country codes to filter proxies.</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="sd">        protocol: HTTP/HTTPS protocol to filter proxies.</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="sd">    Returns:</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="sd">        proxyObject (Proxy): A working proxy object if found or else None.</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a>    <span class="k">for</span> <span class="n">provider</span> <span class="ow">in</span> <span class="n">Providers</span><span class="p">:</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a>        <span class="k">if</span> <span class="n">protocol</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">provider</span><span class="o">.</span><span class="n">protocols</span><span class="p">:</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>            <span class="k">continue</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a>        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">countries</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">provider</span><span class="o">.</span><span class="n">countryFilter</span><span class="p">):</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a>            <span class="k">continue</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a>        <span class="k">try</span><span class="p">:</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a>            <span class="k">return</span> <span class="n">run</span><span class="p">(</span><span class="n">provider</span><span class="o">.</span><span class="n">providerFunction</span><span class="p">(</span><span class="n">countries</span><span class="p">,</span> <span class="n">protocol</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a>        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a>            <span class="k">continue</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a>    <span class="k">return</span> <span class="kc">None</span>
-</span></code></pre></div></td></tr></table></div>
-            </details>
-    </div>
-
-</div><p>You can use filters just like in the <a href="../../API%20Reference/Classes/proxyInterface/"><code>ProxyInterface</code></a> class. This includes filtering by <strong>country</strong> and <strong>protocol</strong>.</p>
-<h2 id="parameters">Parameters</h2>
-<ul>
-<li><code>countries</code> (list[str]): A list of two-letter country codes to filter proxies by country. Defaults to an empty list (no filtering).</li>
-<li><code>protocol</code> (Literal["http", "https"]): The protocol to filter proxies by. Defaults to <code>"http"</code>.</li>
-</ul>
-<h2 id="returns">Returns</h2>
-<ul>
-<li><a href="../../API%20Reference/Models/proxy/"><code>Proxy</code></a> | <code>None</code>: A <code>Proxy</code> object if a valid proxy is found, otherwise <code>None</code>.</li>
-</ul>
-<h2 id="example">Example</h2>
+<h1 id="examples">Examples</h1>
+<p>This page provides practical examples to help you get started with <code>swiftshadow</code>. It covers all major features, including filtering, caching, rotation, and integration with popular libraries.</p>
+<hr />
+<h2 id="basic-usage">Basic Usage</h2>
+<h3 id="fetching-a-proxy">Fetching a Proxy</h3>
+<p>To fetch a random proxy:
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuickProxy</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1"># Get a random HTTP proxy</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">proxy</span> <span class="o">=</span> <span class="n">QuickProxy</span><span class="p">()</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Get an HTTPS proxy from the US or India</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">proxy</span> <span class="o">=</span> <span class="n">QuickProxy</span><span class="p">(</span><span class="n">countries</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;US&quot;</span><span class="p">,</span> <span class="s2">&quot;IN&quot;</span><span class="p">],</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;https&quot;</span><span class="p">)</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
-</span></code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Since <code>QuickProxy</code> does not cache proxies, it may take slightly longer to fetch a proxy compared to <a href="../../API%20Reference/Classes/proxyInterface/"><code>ProxyInterface</code></a> when used repeatedly. However, it is faster for single-use scenarios.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If no proxies match the provided filters, <code>QuickProxy</code> will return <code>None</code>. Always check the return value before using it.</p>
-</div>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">proxy</span> <span class="o">=</span> <span class="n">QuickProxy</span><span class="p">()</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>  <span class="c1"># Output: http://&lt;ip&gt;:&lt;port&gt;</span>
+</span></code></pre></div></p>
 <hr />
-<p>For more advanced use cases, such as caching and automatic rotation, consider using the <a href="../../API%20Reference/Classes/proxyInterface/"><code>ProxyInterface</code></a> class. </p>
+<h2 id="filtering-proxies">Filtering Proxies</h2>
+<h3 id="country-filter">Country Filter</h3>
+<p>Filter proxies by country using two-letter ISO codes:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow.classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProxyInterface</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># Fetch proxies from the US and India</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">(</span><span class="n">countries</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;US&quot;</span><span class="p">,</span> <span class="s2">&quot;IN&quot;</span><span class="p">])</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span></code></pre></div></p>
+<h3 id="protocol-filter">Protocol Filter</h3>
+<p>Filter proxies by protocol (<code>http</code> or <code>https</code>):
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow.classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProxyInterface</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1"># Fetch HTTPS proxies</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;https&quot;</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span></code></pre></div></p>
+<hr />
+<h2 id="proxy-rotation">Proxy Rotation</h2>
+<h3 id="manual-rotation">Manual Rotation</h3>
+<p>Manually rotate proxies using the <code>rotate()</code> method:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow.classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProxyInterface</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">()</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># Get the first proxy</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="c1"># Rotate to a new proxy</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">swift</span><span class="o">.</span><span class="n">rotate</span><span class="p">()</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span></code></pre></div></p>
+<h3 id="automatic-rotation">Automatic Rotation</h3>
+<p>Enable automatic rotation by setting <code>autoRotate=True</code>:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow.classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProxyInterface</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">(</span><span class="n">autoRotate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># Each call to get() will return a new proxy</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span></code></pre></div></p>
+<hr />
+<h2 id="caching">Caching</h2>
+<h3 id="custom-cache-folder">Custom Cache Folder</h3>
+<p>Specify a custom cache folder (useful for AWS Lambda):
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow.classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProxyInterface</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1"># Use the /tmp directory for caching</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">(</span><span class="n">cacheFolderPath</span><span class="o">=</span><span class="s2">&quot;/tmp&quot;</span><span class="p">)</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span></code></pre></div></p>
+<h3 id="disabling-caching">Disabling Caching</h3>
+<p>For one-off use cases, use <a href="../../API%20Reference/Classes/quickProxy/"><code>QuickProxy</code></a>:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuickProxy</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">proxy</span> <span class="o">=</span> <span class="n">QuickProxy</span><span class="p">()</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">proxy</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span></code></pre></div></p>
+<hr />
+<h2 id="integration-with-libraries">Integration with Libraries</h2>
+<h3 id="using-with-requests">Using with <code>requests</code></h3>
+<p>Route requests through a proxy using the <code>requests</code> library:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuickProxy</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">requests</span><span class="w"> </span><span class="kn">import</span> <span class="n">get</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">proxy</span> <span class="o">=</span> <span class="n">QuickProxy</span><span class="p">()</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">resp</span> <span class="o">=</span> <span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://checkip.amazonaws.com&#39;</span><span class="p">,</span> <span class="n">proxies</span><span class="o">=</span><span class="n">proxy</span><span class="o">.</span><span class="n">as_requests_dict</span><span class="p">())</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>  <span class="c1"># Output: Proxy&#39;s IP address</span>
+</span></code></pre></div></p>
+<h3 id="using-with-httpx">Using with <code>httpx</code></h3>
+<p>Route requests through a proxy using the <code>httpx</code> library:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow</span><span class="w"> </span><span class="kn">import</span> <span class="n">QuickProxy</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">httpx</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="n">proxy</span> <span class="o">=</span> <span class="n">QuickProxy</span><span class="p">()</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">proxies</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;http://&quot;</span><span class="p">:</span> <span class="n">proxy</span><span class="o">.</span><span class="n">as_string</span><span class="p">(),</span> <span class="s2">&quot;https://&quot;</span><span class="p">:</span> <span class="n">proxy</span><span class="o">.</span><span class="n">as_string</span><span class="p">()})</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>    <span class="n">resp</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://checkip.amazonaws.com&#39;</span><span class="p">)</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">resp</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>  <span class="c1"># Output: Proxy&#39;s IP address</span>
+</span></code></pre></div></p>
+<hr />
+<h2 id="advanced-usage">Advanced Usage</h2>
+<h3 id="combining-filters">Combining Filters</h3>
+<p>Combine country and protocol filters for precise proxy selection:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow.classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProxyInterface</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1"># Fetch HTTPS proxies from the US and India</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">(</span><span class="n">countries</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;US&quot;</span><span class="p">,</span> <span class="s2">&quot;IN&quot;</span><span class="p">],</span> <span class="n">protocol</span><span class="o">=</span><span class="s2">&quot;https&quot;</span><span class="p">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span></code></pre></div></p>
+<h3 id="force-cache-update">Force Cache Update</h3>
+<p>Force an update of the proxy cache:
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow.classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProxyInterface</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">()</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">swift</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>  <span class="c1"># Force update the proxy list</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span></code></pre></div></p>
+<hr />
+<p>For more details on classes and methods, visit the <a href="../../API%20Reference/Classes/proxyInterface/">References</a> page.</p>
 
 
 
@@ -1234,7 +1480,7 @@ No caching is done.</p>
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../Using-Proxy-Class/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Basic Usage">
+          <a href="../Using-QuickProxy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: QuickProxy">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1244,20 +1490,20 @@ No caching is done.</p>
                 Previous
               </span>
               <div class="md-ellipsis">
-                Basic Usage
+                QuickProxy
               </div>
             </div>
           </a>
         
         
           
-          <a href="../examples/" class="md-footer__link md-footer__link--next" aria-label="Next: Examples">
+          <a href="../../Use%20Swiftshadow%20with/AWS-Lambda/" class="md-footer__link md-footer__link--next" aria-label="Next: AWS Lambda">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Examples
+                AWS Lambda
               </div>
             </div>
             <div class="md-footer__button md-icon">

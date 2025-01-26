@@ -8,7 +8,7 @@ def QuickProxy(
     countries: list[str] = [], protocol: Literal["http", "https"] = "http"
 ) -> Proxy | None:
     """
-    This function is a faster alternative to `Proxy` class.
+    This function is a faster alternative to `ProxyInterface` class.
     No caching is done.
 
     Args:
@@ -16,7 +16,7 @@ def QuickProxy(
         protocol: HTTP/HTTPS protocol to filter proxies.
 
     Returns:
-        proxyObject (dict): A working proxy object if found or else None.
+        proxyObject (Proxy): A working proxy object if found or else None.
     """
     for provider in Providers:
         if protocol not in provider.protocols:
