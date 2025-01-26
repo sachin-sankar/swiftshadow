@@ -89,10 +89,22 @@ async def OpenProxyList(
     return results
 
 
+async def MuRongPIG(
+    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+):
+    raw = get(
+        "https://raw.githubusercontent.com/MuRongPIG/Proxy-Master/refs/heads/main/http_checked.txt"
+    ).text
+    proxies: list[Proxy] = plaintextToProxies(raw, protocol="http")
+    results = await validate_proxies(proxies)
+    return results
+
+
 Providers: list[Provider] = [
     Provider(providerFunction=Monosans, countryFilter=True, protocols=["http"]),
     Provider(providerFunction=Thespeedx, countryFilter=False, protocols=["http"]),
     Provider(providerFunction=ProxyScrape, countryFilter=True, protocols=["http"]),
     Provider(providerFunction=GoodProxy, countryFilter=False, protocols=["http"]),
     Provider(providerFunction=OpenProxyList, countryFilter=False, protocols=["http"]),
+    Provider(providerFunction=MuRongPIG, countryFilter=False, protocols=["http"]),
 ]
