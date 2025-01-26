@@ -133,6 +133,15 @@ async def Anonym0usWork1221(
     return results
 
 
+async def ProxySpace(
+    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+):
+    raw = get("https://proxyspace.pro/http.txt").text
+    proxies: list[Proxy] = plaintextToProxies(raw, protocol="http")
+    results = await validate_proxies(proxies)
+    return results
+
+
 Providers: list[Provider] = [
     Provider(providerFunction=Monosans, countryFilter=True, protocols=["http"]),
     Provider(providerFunction=Thespeedx, countryFilter=False, protocols=["http"]),
@@ -149,4 +158,5 @@ Providers: list[Provider] = [
         countryFilter=False,
         protocols=["http", "https"],
     ),
+    Provider(providerFunction=ProxySpace, countryFilter=False, protocols=["http"]),
 ]
