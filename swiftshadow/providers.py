@@ -2,7 +2,7 @@ from typing import Literal
 
 from requests import get
 
-from swiftshadow.models import Proxy
+from swiftshadow.models import Proxy, Provider
 from swiftshadow.types import MonosansProxyDict
 from swiftshadow.validator import validate_proxies
 
@@ -66,8 +66,8 @@ async def ProxyScrape(
     return results
 
 
-Providers = [
-    {"provider": Monosans, "countryFilter": True, "protocols": ["http"]},
-    {"provider": Thespeedx, "countryFilter": False, "protocols": ["http"]},
-    {"provider": ProxyScrape, "countryFilter": True, "protocols": ["http"]},
+Providers: list[Provider] = [
+    Provider(providerFunction=Monosans, countryFilter=True, protocols=["http"]),
+    Provider(providerFunction=Thespeedx, countryFilter=False, protocols=["http"]),
+    Provider(providerFunction=ProxyScrape, countryFilter=True, protocols=["http"]),
 ]
