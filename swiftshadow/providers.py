@@ -111,6 +111,17 @@ async def KangProxy(
     return results
 
 
+async def Mmpx12(
+    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+):
+    raw = get(
+        f"https://github.com/mmpx12/proxy-list/raw/refs/heads/master/{protocol}.txt"
+    ).text
+    proxies: list[Proxy] = plaintextToProxies(raw, protocol=protocol)
+    results = await validate_proxies(proxies)
+    return results
+
+
 Providers: list[Provider] = [
     Provider(providerFunction=Monosans, countryFilter=True, protocols=["http"]),
     Provider(providerFunction=Thespeedx, countryFilter=False, protocols=["http"]),
@@ -121,4 +132,5 @@ Providers: list[Provider] = [
     Provider(
         providerFunction=KangProxy, countryFilter=False, protocols=["http", "https"]
     ),
+    Provider(providerFunction=Mmpx12, countryFilter=False, protocols=["http", "https"]),
 ]
