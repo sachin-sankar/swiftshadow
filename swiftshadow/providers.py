@@ -66,8 +66,26 @@ async def ProxyScrape(
     return results
 
 
+async def GoodProxy(
+    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+):
+    baseUrl = "https://raw.githubusercontent.com/yuceltoluyag/GoodProxy/refs/heads/main/GoodProxy.txt"
+    proxies: list[Proxy] = []
+    raw = get(baseUrl).text
+
+    for line in raw.splitlines():
+        if line == "":
+            continue
+        line = line.split("|")[0].split(":")
+        proxy = Proxy(ip=line[0], port=int(line[1]), protocol="http")
+        proxies.append(proxy)
+    results = await validate_proxies(proxies)
+    return results
+
+
 Providers: list[Provider] = [
     Provider(providerFunction=Monosans, countryFilter=True, protocols=["http"]),
     Provider(providerFunction=Thespeedx, countryFilter=False, protocols=["http"]),
     Provider(providerFunction=ProxyScrape, countryFilter=True, protocols=["http"]),
+    Provider(providerFunction=GoodProxy, countryFilter=False, protocols=["http"]),
 ]
