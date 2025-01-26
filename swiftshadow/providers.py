@@ -2,6 +2,7 @@ from typing import Literal
 
 from requests import get
 
+from swiftshadow.helpers import plaintextToProxies
 from swiftshadow.models import Proxy, Provider
 from swiftshadow.types import MonosansProxyDict
 from swiftshadow.validator import validate_proxies
@@ -40,11 +41,7 @@ async def Thespeedx(
     raw: str = get(
         "https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt"
     ).text
-    proxies: list[Proxy] = []
-    for line in raw.splitlines():
-        line = line.split(":")
-        proxy = Proxy(ip=line[0], protocol="http", port=int(line[-1]))
-        proxies.append(proxy)
+    proxies: list[Proxy] = plaintextToProxies(raw, protocol="http")
     results = await validate_proxies(proxies)
     return results
 
@@ -83,9 +80,19 @@ async def GoodProxy(
     return results
 
 
+async def OpenProxyList(
+    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+):
+    raw = get("https://api.openproxylist.xyz/http.txt").text
+    proxies: list[Proxy] = plaintextToProxies(raw, protocol="http")
+    results = await validate_proxies(proxies)
+    return results
+
+
 Providers: list[Provider] = [
     Provider(providerFunction=Monosans, countryFilter=True, protocols=["http"]),
     Provider(providerFunction=Thespeedx, countryFilter=False, protocols=["http"]),
     Provider(providerFunction=ProxyScrape, countryFilter=True, protocols=["http"]),
     Provider(providerFunction=GoodProxy, countryFilter=False, protocols=["http"]),
+    Provider(providerFunction=OpenProxyList, countryFilter=False, protocols=["http"]),
 ]

@@ -1,6 +1,8 @@
 from datetime import datetime
+from typing import Literal
 
 from requests import get
+from swiftshadow.models import Proxy
 
 
 def checkProxy(proxy):
@@ -21,3 +23,12 @@ def log(level, message):
     print(
         f"{datetime.now().strftime('%d/%m/%Y %H:%M:%S')} - [swiftshadow] - {level} : {message}"
     )
+
+
+def plaintextToProxies(text: str, protocol: Literal["http", "https"]) -> list[Proxy]:
+    proxies: list[Proxy] = []
+    for line in text.splitlines():
+        ip, port = line.split(":")
+        proxy = Proxy(ip=ip, port=int(port), protocol=protocol)
+        proxies.append(proxy)
+    return proxies
