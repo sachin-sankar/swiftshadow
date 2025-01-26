@@ -28,7 +28,10 @@ def log(level, message):
 def plaintextToProxies(text: str, protocol: Literal["http", "https"]) -> list[Proxy]:
     proxies: list[Proxy] = []
     for line in text.splitlines():
-        ip, port = line.split(":")
+        try:
+            ip, port = line.split(":")
+        except ValueError:
+            continue
         proxy = Proxy(ip=ip, port=int(port), protocol=protocol)
         proxies.append(proxy)
     return proxies
