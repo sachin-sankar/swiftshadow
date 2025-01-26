@@ -28,6 +28,16 @@ class Proxy:
         """
         return {self.protocol: f"{self.ip}:{self.port}"}
 
+    def as_string(self) -> str:
+        """
+        Return proxy in a string of format
+        <protocol>://<ip>:<port>
+
+        Returns:
+            string: Proxy in string format.
+        """
+        return f"{self.protocol}://{self.ip}:{self.port}"
+
 
 @dataclass
 class CacheData:
