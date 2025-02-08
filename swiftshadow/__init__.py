@@ -1,7 +1,8 @@
-from typing import Literal
-from swiftshadow.providers import Providers
-from swiftshadow.models import Proxy
 from asyncio import run
+from typing import Literal
+
+from swiftshadow.models import Proxy
+from swiftshadow.providers import Providers
 
 
 def QuickProxy(
