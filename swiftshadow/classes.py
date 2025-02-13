@@ -148,6 +148,8 @@ class ProxyInterface:
         except FileNotFoundError:
             logger.info("No cache found, will be created after update.")
 
+        self.proxies = []
+
         for provider in Providers:
             if self.protocol not in provider.protocols:
                 continue
@@ -207,6 +209,8 @@ class ProxyInterface:
                     logger.info("Cache Expired")
         except FileNotFoundError:
             logger.info("No cache found, will be created after update.")
+
+        self.proxies = []
 
         for provider in Providers:
             if self.protocol not in provider.protocols:
