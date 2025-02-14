@@ -50,3 +50,14 @@ def test_async_update():
     swift = ProxyInterface(autoUpdate=False)
     run(swift.async_update())
     assert isinstance(swift.get(), Proxy)
+
+
+def test_async_update_autorotate():
+    cacheFilePath = Path(user_cache_dir(appname="swiftshadow")).joinpath(
+        "swiftshadow.pickle"
+    )
+    remove(cacheFilePath)
+    swift = ProxyInterface(autoUpdate=False, autoRotate=True)
+    run(swift.async_update())
+    assert isinstance(swift.get(), Proxy)
+    assert isinstance(swift.get(), Proxy)

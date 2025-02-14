@@ -14,6 +14,7 @@ from swiftshadow.providers import Providers
 from asyncio import run
 import aiofiles
 
+
 logger = getLogger("swiftshadow")
 logger.setLevel(INFO)
 logFormat = Formatter("%(asctime)s - %(name)s [%(levelname)s]:%(message)s")
@@ -142,6 +143,7 @@ class ProxyInterface:
                     )
                     self.current = self.proxies[0]
                     self.cacheExpiry = cache.expiryIn
+                    logger.debug(f"Cache set to expire at {cache.expiryIn}")
                     return
                 else:
                     logger.info("Cache Expired")
@@ -203,6 +205,7 @@ class ProxyInterface:
                         f"Cache with {len(cache.proxies)} proxies, expire in {cache.expiryIn}"
                     )
                     self.current = self.proxies[0]
+                    logger.debug(f"Cache set to expire at {cache.expiryIn}")
                     self.cacheExpiry = cache.expiryIn
                     return
                 else:
@@ -254,11 +257,13 @@ class ProxyInterface:
         Raises:
             ValueError: If validate_cache=True but no cache exists.
         """
-        if self.cacheExpiry and not validate_cache:
-            if checkExpiry(self.cacheExpiry):
-                self.update()
-        else:
-            raise ValueError("No cache availabel but validate_cache is true.")
+        if validate_cache:
+            if self.cacheExpiry:
+                if checkExpiry(self.cacheExpiry):
+                    logger.debug("Cache Expired on rotate call, updating.")
+                    self.update()
+            else:
+                raise ValueError("No cache available but validate_cache is true.")
         self.current = choice(self.proxies)
 
     def get(self) -> Proxy:
