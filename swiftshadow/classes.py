@@ -113,8 +113,9 @@ class ProxyInterface:
         self.proxies: list[Proxy] = []
         self.current: Proxy | None = None
         self.cacheExpiry: datetime | None = None
+        self.autoUpdate = autoUpdate
 
-        if autoUpdate:
+        if self.autoUpdate:
             self.update()
 
     async def async_update(self):
@@ -281,7 +282,7 @@ class ProxyInterface:
         """
 
         if self.autorotate:
-            self.rotate()
+            self.rotate(validate_cache=self.autoUpdate)
         if self.current:
             return self.current
         else:
