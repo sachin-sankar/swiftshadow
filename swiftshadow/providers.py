@@ -3,7 +3,7 @@ from typing import Literal
 from requests import get
 
 from swiftshadow.helpers import plaintextToProxies
-from swiftshadow.models import Proxy, Provider
+from swiftshadow.models import Provider, Proxy
 from swiftshadow.types import MonosansProxyDict
 from swiftshadow.validator import validate_proxies
 

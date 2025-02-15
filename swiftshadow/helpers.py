@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Literal
 
 from requests import get
+
 from swiftshadow.models import Proxy
 
 

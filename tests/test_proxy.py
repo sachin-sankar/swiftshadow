@@ -1,7 +1,11 @@
+from asyncio import run
 from pathlib import Path
+from os import remove
+
+from appdirs import user_cache_dir
+
 from swiftshadow.classes import ProxyInterface
 from swiftshadow.models import Proxy
-from appdirs import user_cache_dir
 
 
 def test_basic_proxy():
@@ -36,3 +40,24 @@ def test_log_file():
     with open(logPath, "rt") as file:
         text = file.read()
         assert text != "", True
+
+
+def test_async_update():
+    cacheFilePath = Path(user_cache_dir(appname="swiftshadow")).joinpath(
+        "swiftshadow.pickle"
+    )
+    remove(cacheFilePath)
+    swift = ProxyInterface(autoUpdate=False)
+    run(swift.async_update())
+    assert isinstance(swift.get(), Proxy)
+
+
+def test_async_update_autorotate():
+    cacheFilePath = Path(user_cache_dir(appname="swiftshadow")).joinpath(
+        "swiftshadow.pickle"
+    )
+    remove(cacheFilePath)
+    swift = ProxyInterface(autoUpdate=False, autoRotate=True)
+    run(swift.async_update())
+    assert isinstance(swift.get(), Proxy)
+    assert isinstance(swift.get(), Proxy)
