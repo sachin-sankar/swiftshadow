@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
 ## Quart Example
 
-Below is a similar example for Quart:
+Below is a similar example for Quart. In this updated example, we disable automatic rotation (i.e. `autoRotate=False`) and instead call `rotate(validate_cache=False)` manually within the route. This avoids errors related to the event loop in Quart.
 
 ```python
 from quart import Quart
@@ -63,7 +63,7 @@ import asyncio
 from swiftshadow.classes import ProxyInterface
 
 app = Quart(__name__)
-swift = ProxyInterface(autoUpdate=False, autoRotate=True)
+swift = ProxyInterface(autoUpdate=False, autoRotate=False)  # manual update and rotation
 
 async def background_task():
     """Update proxies every 5 seconds."""
@@ -81,6 +81,7 @@ async def startup():
 @app.route("/")
 async def home():
     """Return a refreshed proxy."""
+    swift.rotate(validate_cache=False)  # manually rotate without cache validation
     return "Hello, Quart! Here is a proxy: " + swift.get().as_string()
 
 if __name__ == "__main__":
@@ -89,9 +90,8 @@ if __name__ == "__main__":
 
 ## Summary
 
-By calling `async_update()` in a background task, you ensure that your proxies are refreshed safely within your app's own event loop.
+By calling `async_update()` in a background task, you ensure that your proxies are refreshed safely within your app's own event loop.  
+**Note:** In some async frameworks (e.g., Quart), if you encounter issues with auto-rotation, consider disabling `autoRotate` and manually calling `rotate(validate_cache=False)` to avoid event loop conflicts.
 
 !!! note "Remember"
     Always call `async_update()` before accessing a proxy to keep it up to date and avoid potential issues with event loops.
-
---- 
