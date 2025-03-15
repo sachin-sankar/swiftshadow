@@ -54,9 +54,10 @@ async def check_proxy(async_session: aiohttp.ClientSession, proxy: Proxy) -> str
         text: API response text
     """
     async with async_session.get(
-        url=f"{proxy.protocol}://checkip.amazonaws.com",
+        url="http://checkip.amazonaws.com",
         proxy=proxy.as_string(),
         timeout=4,
+        ssl=False,
     ) as response:
         text = await response.text()
         return text

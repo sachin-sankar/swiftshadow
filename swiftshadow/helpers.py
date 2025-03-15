@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Literal
 
 from requests import get
+from aiohttp import ClientSession
 
 from swiftshadow.models import Proxy
 
@@ -36,3 +37,9 @@ def plaintextToProxies(text: str, protocol: Literal["http", "https"]) -> list[Pr
         proxy = Proxy(ip=ip, port=int(port), protocol=protocol)
         proxies.append(proxy)
     return proxies
+
+
+async def JsonPostRequest(session: ClientSession, url: str, json: dict):
+    request = await session.post(url, json=json)
+    resp = await request.json()
+    return resp
