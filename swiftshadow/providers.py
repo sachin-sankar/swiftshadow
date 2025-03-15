@@ -174,6 +174,8 @@ async def ProxyDB(
                 rate = proxy_dict["checks_success"] / proxy_dict["checks_total"]
                 if rate < 0.75:
                     continue
+                if countries != [] and proxy_dict["ccode"] not in countries:
+                    continue
                 proxy = Proxy(
                     ip=proxy_dict["ip"], protocol=protocol, port=proxy_dict["port"]
                 )
@@ -199,7 +201,5 @@ Providers: list[Provider] = [
     ),
     Provider(providerFunction=ProxySpace, countryFilter=False, protocols=["http"]),
     Provider(providerFunction=OpenProxyList, countryFilter=False, protocols=["http"]),
-    Provider(
-        providerFunction=ProxyDB, countryFilter=False, protocols=["http", "https"]
-    ),
+    Provider(providerFunction=ProxyDB, countryFilter=True, protocols=["http", "https"]),
 ]
