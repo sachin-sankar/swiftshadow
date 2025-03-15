@@ -46,10 +46,12 @@ class CacheData:
 
     Attributes:
         expiryIn: Expiry date object.
+        configString: Configuration String for the ProxyInterface this cache was created.
         proxies: Proxies to head.
     """
 
     expiryIn: datetime
+    configString: str
     proxies: list[Proxy]
 
 

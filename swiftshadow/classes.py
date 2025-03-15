@@ -94,6 +94,7 @@ class ProxyInterface:
         self.maxproxies: int = maxProxies
         self.autorotate: bool = autoRotate
         self.cachePeriod: int = cachePeriod
+        self.configString: str = f"{maxProxies}{''.join(protocol)}{''.join(countries)}"
 
         if debug:
             logger.setLevel(DEBUG)
@@ -136,7 +137,9 @@ class ProxyInterface:
                 pickled_bytes = await cacheFile.read()
                 cache: CacheData = loads(pickled_bytes)
 
-                if not checkExpiry(cache.expiryIn):
+                if self.configString != cache.configString:
+                    logger.info("Cache Invalid due to configuration changes.")
+                elif not checkExpiry(cache.expiryIn):
                     self.proxies = cache.proxies
                     logger.info("Loaded proxies from cache.")
                     logger.debug(
@@ -177,7 +180,7 @@ class ProxyInterface:
         ) as cacheFile:
             cacheExpiry = getExpiry(self.cachePeriod)
             self.cacheExpiry = cacheExpiry
-            cache = CacheData(cacheExpiry, self.proxies)
+            cache = CacheData(cacheExpiry, self.configString, self.proxies)
             pickled_bytes = dumps(cache)
             _ = await cacheFile.write(pickled_bytes)
         self.current = self.proxies[0]
@@ -199,7 +202,9 @@ class ProxyInterface:
             ) as cacheFile:
                 cache: CacheData = load(cacheFile)
 
-                if not checkExpiry(cache.expiryIn):
+                if self.configString != cache.configString:
+                    logger.info("Cache Invalid due to configuration changes.")
+                elif not checkExpiry(cache.expiryIn):
                     self.proxies = cache.proxies
                     logger.info("Loaded proxies from cache.")
                     logger.debug(
@@ -240,7 +245,7 @@ class ProxyInterface:
         ) as cacheFile:
             cacheExpiry = getExpiry(self.cachePeriod)
             self.cacheExpiry = cacheExpiry
-            cache = CacheData(cacheExpiry, self.proxies)
+            cache = CacheData(cacheExpiry, self.configString, self.proxies)
             dump(cache, cacheFile)
         self.current = self.proxies[0]
 
