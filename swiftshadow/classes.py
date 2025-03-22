@@ -170,7 +170,9 @@ class ProxyInterface:
                 break
 
         if len(self.proxies) == 0:
-            raise ValueError("No proxies where found for the current filter settings.")
+            if self.protocol == "https":
+                raise ValueError("No proxies were found for the current filter settings. Tip: https proxies can be rare; recommend setting protocol to http")
+            raise ValueError("No proxies were found for the current filter settings.")
 
         async with aiofiles.open(
             self.cacheFolderPath.joinpath("swiftshadow.pickle"), "wb+"
@@ -233,7 +235,7 @@ class ProxyInterface:
                 break
 
         if len(self.proxies) == 0:
-            raise ValueError("No proxies where found for the current filter settings.")
+            raise ValueError("No proxies were found for the current filter settings.")
 
         with open(
             self.cacheFolderPath.joinpath("swiftshadow.pickle"), "wb+"
