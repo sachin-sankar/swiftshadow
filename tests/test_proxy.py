@@ -1,6 +1,6 @@
 from asyncio import run
-from pathlib import Path
 from os import remove
+from pathlib import Path
 
 from appdirs import user_cache_dir
 
@@ -47,8 +47,11 @@ def test_async_update():
     cacheFilePath = Path(user_cache_dir(appname="swiftshadow")).joinpath(
         "swiftshadow.pickle"
     )
-    remove(cacheFilePath)
-    swift = ProxyInterface(autoUpdate=False)
+    try:
+        remove(cacheFilePath)
+    except FileNotFoundError:
+        pass
+    swift = ProxyInterface(autoUpdate=False, debug=True)
     run(swift.async_update())
     assert isinstance(swift.get(), Proxy)
 
@@ -58,7 +61,7 @@ def test_async_update_autorotate():
         "swiftshadow.pickle"
     )
     remove(cacheFilePath)
-    swift = ProxyInterface(autoUpdate=False, autoRotate=True)
+    swift = ProxyInterface(autoUpdate=False, autoRotate=True, debug=True)
     run(swift.async_update())
     assert isinstance(swift.get(), Proxy)
     assert isinstance(swift.get(), Proxy)
@@ -66,7 +69,7 @@ def test_async_update_autorotate():
 
 def test_provider_selection():
     selectedProvider = list(Providers.keys())[0]
-    swift = ProxyInterface(selectedProviders=[selectedProvider])
+    swift = ProxyInterface(selectedProviders=[selectedProvider], debug=True)
     proxy = swift.get()
     assert isinstance(proxy, Proxy)
     assert swift.providers[0] == Providers[selectedProvider]
