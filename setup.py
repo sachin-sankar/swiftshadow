@@ -1,11 +1,10 @@
 """Install packages as defined in this file into the Python environment."""
 
-from setuptools import setup, find_packages
-
 # The version of this tool is based on the following steps:
-
 # https://packaging.python.org/guides/single-sourcing-package-version/
 from pathlib import Path
+
+from setuptools import find_packages, setup
 
 this_directory = Path(__file__).parent
 

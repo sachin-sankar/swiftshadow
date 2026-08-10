@@ -1,14 +1,15 @@
-from typing import Any, Callable, Coroutine, Literal
-import aiohttp
+from asyncio import create_task, gather
+from collections.abc import Callable, Coroutine
+from typing import Any, Literal
 
+import aiohttp
+from lxml import etree
 from requests import get
 
 from swiftshadow.helpers import GenericPlainTextProxyProvider
 from swiftshadow.models import Provider, Proxy
-from asyncio import create_task, gather
 from swiftshadow.types import MonosansProxyDict
 from swiftshadow.validator import validate_proxies
-from lxml import etree
 
 
 async def Monosans(

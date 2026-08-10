@@ -1,11 +1,12 @@
 from asyncio import run
+from collections.abc import Callable, Coroutine
 from datetime import datetime
 from logging import DEBUG, INFO, FileHandler, Formatter, StreamHandler, getLogger
 from pathlib import Path
 from pickle import dump, dumps, load, loads
 from random import choice
 from sys import stdout
-from typing import Literal, Any, Callable, Coroutine
+from typing import Any, Literal
 
 import aiofiles
 from appdirs import user_cache_dir
