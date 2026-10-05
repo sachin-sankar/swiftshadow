@@ -1,6 +1,6 @@
 from asyncio import run
 from collections.abc import Callable, Coroutine
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from logging import DEBUG, INFO, FileHandler, Formatter, StreamHandler, getLogger
 from pathlib import Path
 from pickle import dump, dumps, load, loads
@@ -11,7 +11,7 @@ from typing import Any, Literal
 import aiofiles
 from appdirs import user_cache_dir
 
-from swiftshadow.cache import checkExpiry, getExpiry
+
 from swiftshadow.exceptions import UnsupportedProxyProtocol
 from swiftshadow.helpers import deduplicateProxies
 from swiftshadow.models import CacheData, Provider
@@ -161,7 +161,7 @@ class ProxyInterface:
 
                 if self.configString != cache.configString:
                     logger.info("Cache Invalid due to configuration changes.")
-                elif not checkExpiry(cache.expiryIn):
+                elif (datetime.now(timezone.utc) - cache.expiryIn).days < 0:
                     self.proxies = cache.proxies
                     logger.info("Loaded proxies from cache.")
                     logger.debug(
@@ -201,7 +201,9 @@ class ProxyInterface:
         async with aiofiles.open(
             self.cacheFolderPath.joinpath("swiftshadow.pickle"), "wb+"
         ) as cacheFile:
-            cacheExpiry = getExpiry(self.cachePeriod)
+            cacheExpiry = datetime.now(timezone.utc) + timedelta(
+                minutes=self.cachePeriod
+            )
             self.cacheExpiry = cacheExpiry
             cache = CacheData(cacheExpiry, self.configString, self.proxies)
             pickled_bytes = dumps(cache)
@@ -230,7 +232,7 @@ class ProxyInterface:
         """
         if validate_cache:
             if self.cacheExpiry:
-                if checkExpiry(self.cacheExpiry):
+                if (datetime.now(timezone.utc) - self.cacheExpiry).days >= 0:
                     logger.debug("Cache Expired on rotate call, updating.")
                     self.update()
             else:
