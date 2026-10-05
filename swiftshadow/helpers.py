@@ -19,10 +19,9 @@ def plaintextToProxies(text: str, protocol: Literal["http", "https"]) -> list[Pr
     for line in text.splitlines():
         try:
             ip, port = line.split(":")
+            proxies.append(Proxy(ip=ip, port=int(port), protocol=protocol))
         except ValueError:
             continue
-        proxy = Proxy(ip=ip, port=int(port), protocol=protocol)
-        proxies.append(proxy)
     return proxies
 
 
