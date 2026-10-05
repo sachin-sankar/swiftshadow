@@ -211,67 +211,8 @@ class ProxyInterface:
     def update(self):
         """
         Updates proxy list from providers or cache.
-
-        First attempts to load valid proxies from cache. If cache is expired/missing,
-        fetches fresh proxies from registered providers that match country and protocol filters.
-        Updates cache file with new proxies if fetched from providers.
-
-        Raises:
-            ValueError: If no proxies found after provider scraping.
         """
-        try:
-            with open(
-                self.cacheFolderPath.joinpath("swiftshadow.pickle"), "rb"
-            ) as cacheFile:
-                cache: CacheData = load(cacheFile)
-
-                if self.configString != cache.configString:
-                    logger.info("Cache Invalid due to configuration changes.")
-                elif not checkExpiry(cache.expiryIn):
-                    self.proxies = cache.proxies
-                    logger.info("Loaded proxies from cache.")
-                    logger.debug(
-                        f"Cache with {len(cache.proxies)} proxies, expire in {cache.expiryIn}"
-                    )
-                    self.current = self.proxies[0]
-                    logger.debug(f"Cache set to expire at {cache.expiryIn}")
-                    self.cacheExpiry = cache.expiryIn
-                    return
-                else:
-                    logger.info("Cache Expired")
-        except FileNotFoundError:
-            logger.info("No cache found, will be created after update.")
-
-        self.proxies = []
-
-        for provider in self.providers:
-            if self.protocol not in provider.protocols:
-                continue
-            if (len(self.countries) != 0) and (not provider.countryFilter):
-                continue
-            providerProxies: list[Proxy] = run(
-                provider.providerFunction(self.countries, self.protocol)
-            )
-            logger.debug(
-                f"{len(providerProxies)} proxies from {provider.providerFunction.__name__}"
-            )
-            self.proxies.extend(providerProxies)
-
-            if len(self.proxies) >= self.maxproxies:
-                break
-
-        if len(self.proxies) == 0:
-            raise ValueError("No proxies where found for the current filter settings.")
-
-        self.proxies = deduplicateProxies(self.proxies)
-        with open(
-            self.cacheFolderPath.joinpath("swiftshadow.pickle"), "wb+"
-        ) as cacheFile:
-            cacheExpiry = getExpiry(self.cachePeriod)
-            self.cacheExpiry = cacheExpiry
-            cache = CacheData(cacheExpiry, self.configString, self.proxies)
-            dump(cache, cacheFile)
-        self.current = self.proxies[0]
+        run(self.async_update())
 
     def rotate(self, validate_cache: bool = False):
         """
