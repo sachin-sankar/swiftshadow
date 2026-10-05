@@ -10,19 +10,6 @@ from swiftshadow.validator import validate_proxies
 logger = getLogger("swiftshadow")
 
 
-def checkProxy(proxy):
-    proxyDict = {proxy[1]: proxy[0]}
-    try:
-        resp = get(
-            f"{proxy[1]}://checkip.amazonaws.com", proxies=proxyDict, timeout=2
-        ).text
-        if resp.count(".") == 3:
-            return True
-        return False
-    except Exception:
-        return False
-
-
 def log(level, message):
     logger.log(getattr(logger, level.upper(), 20), message)
 
