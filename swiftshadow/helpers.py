@@ -1,10 +1,13 @@
-from datetime import datetime
+from logging import getLogger
 from typing import Literal
 
 from requests import get
 
 from swiftshadow.models import Proxy
 from swiftshadow.validator import validate_proxies
+
+
+logger = getLogger("swiftshadow")
 
 
 def checkProxy(proxy):
@@ -21,10 +24,7 @@ def checkProxy(proxy):
 
 
 def log(level, message):
-    level = level.upper()
-    print(
-        f"{datetime.now().strftime('%d/%m/%Y %H:%M:%S')} - [swiftshadow] - {level} : {message}"
-    )
+    logger.log(getattr(logger, level.upper(), 20), message)
 
 
 def plaintextToProxies(text: str, protocol: Literal["http", "https"]) -> list[Proxy]:
