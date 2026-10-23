@@ -1,6 +1,6 @@
 [project]
 name = "swiftshadow"
-version = "2.4.0"
+version = "2.4.1"
 description = "Free IP Proxy rotator for python"
 readme = "README.md"
 authors = [{ name = "sachin-sankar", email = "mail.sachinsankar@gmail.com" }]
