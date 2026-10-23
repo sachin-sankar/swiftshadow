@@ -1,6 +1,7 @@
 from asyncio import run
 from pathlib import Path
 
+import pytest
 from appdirs import user_cache_dir
 
 from swiftshadow.classes import ProxyInterface
@@ -20,6 +21,8 @@ def test_proxy_country_filter():
 
 def test_proxy_rotation():
     swift = ProxyInterface(debug=True)
+    if len(swift.proxies) < 1:
+        pytest.skip("Not enough proxies to test rotation.")
     first = swift.get()
     swift.rotate()
     second = swift.get()
@@ -28,6 +31,8 @@ def test_proxy_rotation():
 
 def test_proxy_auto_rotation():
     swift = ProxyInterface(debug=True, autoRotate=True)
+    if len(swift.proxies) < 1:
+        pytest.skip("Not enough proxies to test auto rotation.")
     first = swift.get()
     second = swift.get()
     assert first != second
