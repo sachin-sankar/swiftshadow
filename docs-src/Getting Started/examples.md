@@ -122,6 +122,31 @@ with httpx.Client(
     print(resp.text)  # Output: Proxy's IP address
 ```
 
+
+### Using with `aiohttp`
+Route requests through a proxy using the `aiohttp` library:
+```python
+import aiohttp
+import asyncio
+from swiftshadow import QuickProxy
+
+async def main():
+    proxy = QuickProxy()
+    # Example headers to mimic a real browser (e.g., Firefox)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/115.0"
+    }
+    
+    async with aiohttp.ClientSession() as session:
+        async with session.get(
+            "https://checkip.amazonaws.com", 
+            proxy=proxy.as_string(), 
+            headers=headers
+        ) as resp:
+            print(await resp.text())  # Output: Proxy's IP address
+
+asyncio.run(main())
+```
 ---
 
 ## Advanced Usage
