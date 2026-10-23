@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1211,9 +1211,10 @@
 <h1 id="basic-usage">Basic Usage</h1>
 <p>To get a random <code>HTTP</code> proxy from any country:
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow.classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProxyInterface</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">()</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">()</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
 </span></code></pre></div></p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1233,11 +1234,11 @@
 <ul>
 <li>For a list of countries and their two-letter codes, visit <a href="https://en.m.wikipedia.org/wiki/ISO_3166-2">this Wikipedia page</a>.</li>
 </ul>
-<div class="language-python highlight"><span class="filename">Country Filtered</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">(</span><span class="n">countries</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;US&#39;</span><span class="p">,</span> <span class="s1">&#39;IN&#39;</span><span class="p">])</span>
+<div class="language-python highlight"><span class="filename">Country Filtered</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">(</span><span class="n">countries</span><span class="o">=</span><span class="p">[</span><span class="s2">"US"</span><span class="p">,</span> <span class="s2">"IN"</span><span class="p">])</span>
 </span></code></pre></div>
 <h2 id="protocol-filter">Protocol Filter</h2>
 <p>By default, all proxies are <code>HTTP</code>. For <strong>SSL-enabled</strong> <code>HTTPS</code> proxies, set the <code>protocol</code> parameter to <code>"https"</code>.</p>
-<div class="language-python highlight"><span class="filename">HTTPS Filter</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s1">&#39;https&#39;</span><span class="p">)</span>
+<div class="language-python highlight"><span class="filename">HTTPS Filter</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">(</span><span class="n">protocol</span><span class="o">=</span><span class="s2">"https"</span><span class="p">)</span>
 </span></code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -1258,19 +1259,21 @@
 <h2 id="manual-rotation">Manual Rotation</h2>
 <p>You can manually rotate proxies using the <code>rotate()</code> method. This selects a random proxy from the available list.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow.classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProxyInterface</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">()</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">swift</span><span class="o">.</span><span class="n">rotate</span><span class="p">()</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">()</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">swift</span><span class="o">.</span><span class="n">rotate</span><span class="p">()</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
 </span></code></pre></div>
 <h2 id="auto-rotation">Auto Rotation</h2>
 <p>To enable automatic proxy rotation, set the <code>autoRotate</code> parameter to <code>True</code> when initializing the <code>ProxyInterface</code> object. When enabled, the proxy will rotate every time the <code>get()</code> method is called.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">swiftshadow.classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ProxyInterface</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">(</span><span class="n">autoRotate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="n">swift</span> <span class="o">=</span> <span class="n">ProxyInterface</span><span class="p">(</span><span class="n">autoRotate</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">swift</span><span class="o">.</span><span class="n">get</span><span class="p">()</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span>
 </span></code></pre></div>
 <hr />
 <h1 id="caching">Caching</h1>
@@ -1371,7 +1374,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.footer", "content.code.copy", "content.code.select"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

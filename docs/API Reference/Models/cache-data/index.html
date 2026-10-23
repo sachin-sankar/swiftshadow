@@ -19,7 +19,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -27,7 +27,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1373,33 +1373,33 @@
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>swiftshadow/models.py</code></summary>
-                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-43">43</a></span>
-<span class="normal"><a href="#__codelineno-0-44">44</a></span>
-<span class="normal"><a href="#__codelineno-0-45">45</a></span>
-<span class="normal"><a href="#__codelineno-0-46">46</a></span>
-<span class="normal"><a href="#__codelineno-0-47">47</a></span>
-<span class="normal"><a href="#__codelineno-0-48">48</a></span>
-<span class="normal"><a href="#__codelineno-0-49">49</a></span>
-<span class="normal"><a href="#__codelineno-0-50">50</a></span>
-<span class="normal"><a href="#__codelineno-0-51">51</a></span>
-<span class="normal"><a href="#__codelineno-0-52">52</a></span>
-<span class="normal"><a href="#__codelineno-0-53">53</a></span>
-<span class="normal"><a href="#__codelineno-0-54">54</a></span>
-<span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="nd">@dataclass</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="k">class</span><span class="w"> </span><span class="nc">CacheData</span><span class="p">:</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">    Class repersenting data structure if the cache in cache file.</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">    Attributes:</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">        expiryIn: Expiry date object.</span>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="sd">        configString: Configuration String for the ProxyInterface this cache was created.</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        proxies: Proxies to head.</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a>    <span class="n">expiryIn</span><span class="p">:</span> <span class="n">datetime</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a>    <span class="n">configString</span><span class="p">:</span> <span class="nb">str</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a>    <span class="n">proxies</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Proxy</span><span class="p">]</span>
+                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-43">43</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-44">44</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-45">45</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-46">46</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-47">47</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-48">48</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-49">49</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-50">50</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-51">51</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-52">52</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-53">53</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-54">54</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-55">55</a></span>
+<span class="normal"><a href="#swiftshadow.models.CacheData--source--__codelineno-0-56">56</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="swiftshadow.models.CacheData--source--__span-0-43"><a id="swiftshadow.models.CacheData--source--__codelineno-0-43" name="swiftshadow.models.CacheData--source--__codelineno-0-43"></a><span class="nd">@dataclass</span>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-44"><a id="swiftshadow.models.CacheData--source--__codelineno-0-44" name="swiftshadow.models.CacheData--source--__codelineno-0-44"></a><span class="k">class</span><span class="w"> </span><span class="nc">CacheData</span><span class="p">:</span>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-45"><a id="swiftshadow.models.CacheData--source--__codelineno-0-45" name="swiftshadow.models.CacheData--source--__codelineno-0-45"></a><span class="w">    </span><span class="sd">"""</span>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-46"><a id="swiftshadow.models.CacheData--source--__codelineno-0-46" name="swiftshadow.models.CacheData--source--__codelineno-0-46"></a><span class="sd">    Class repersenting data structure if the cache in cache file.</span>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-47"><a id="swiftshadow.models.CacheData--source--__codelineno-0-47" name="swiftshadow.models.CacheData--source--__codelineno-0-47"></a>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-48"><a id="swiftshadow.models.CacheData--source--__codelineno-0-48" name="swiftshadow.models.CacheData--source--__codelineno-0-48"></a><span class="sd">    Attributes:</span>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-49"><a id="swiftshadow.models.CacheData--source--__codelineno-0-49" name="swiftshadow.models.CacheData--source--__codelineno-0-49"></a><span class="sd">        expiryIn: Expiry date object.</span>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-50"><a id="swiftshadow.models.CacheData--source--__codelineno-0-50" name="swiftshadow.models.CacheData--source--__codelineno-0-50"></a><span class="sd">        configString: Configuration String for the ProxyInterface this cache was created.</span>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-51"><a id="swiftshadow.models.CacheData--source--__codelineno-0-51" name="swiftshadow.models.CacheData--source--__codelineno-0-51"></a><span class="sd">        proxies: Proxies to head.</span>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-52"><a id="swiftshadow.models.CacheData--source--__codelineno-0-52" name="swiftshadow.models.CacheData--source--__codelineno-0-52"></a><span class="sd">    """</span>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-53"><a id="swiftshadow.models.CacheData--source--__codelineno-0-53" name="swiftshadow.models.CacheData--source--__codelineno-0-53"></a>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-54"><a id="swiftshadow.models.CacheData--source--__codelineno-0-54" name="swiftshadow.models.CacheData--source--__codelineno-0-54"></a>    <span class="n">expiryIn</span><span class="p">:</span> <span class="n">datetime</span>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-55"><a id="swiftshadow.models.CacheData--source--__codelineno-0-55" name="swiftshadow.models.CacheData--source--__codelineno-0-55"></a>    <span class="n">configString</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="swiftshadow.models.CacheData--source--__span-0-56"><a id="swiftshadow.models.CacheData--source--__codelineno-0-56" name="swiftshadow.models.CacheData--source--__codelineno-0-56"></a>    <span class="n">proxies</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Proxy</span><span class="p">]</span>
 </span></code></pre></div></td></tr></table></div>
               </details>
 
@@ -1514,7 +1514,7 @@
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.footer", "content.code.copy", "content.code.select"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
