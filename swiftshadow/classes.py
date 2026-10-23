@@ -1,9 +1,9 @@
 from asyncio import run
 from collections.abc import Callable, Coroutine
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
 from logging import DEBUG, INFO, FileHandler, Formatter, StreamHandler, getLogger
 from pathlib import Path
-from pickle import dump, dumps, load, loads
+from pickle import dumps, loads
 from random import choice
 from sys import stdout
 from typing import Any, Literal
@@ -11,11 +11,9 @@ from typing import Any, Literal
 import aiofiles
 from appdirs import user_cache_dir
 
-
 from swiftshadow.exceptions import UnsupportedProxyProtocol
 from swiftshadow.helpers import deduplicateProxies
-from swiftshadow.models import CacheData, Provider
-from swiftshadow.models import Proxy as Proxy
+from swiftshadow.models import CacheData, Provider, Proxy
 from swiftshadow.providers import Providers as ProvidersMap
 
 logger = getLogger("swiftshadow")
@@ -63,13 +61,14 @@ class ProxyInterface:
 
     def __init__(
         self,
-        countries: list[str] = [],
+        countries: list[str] | None = None,
         protocol: Literal["https", "http"] = "http",
         selectedProviders: list[
             Callable[
                 [list[str], Literal["http", "https"]], Coroutine[Any, Any, list[Proxy]]
             ]
-        ] = [],
+        ]
+        | None = None,
         maxProxies: int = 10,
         autoRotate: bool = False,
         autoUpdate: bool = True,
@@ -93,6 +92,10 @@ class ProxyInterface:
             logToFile: Write logs to swiftshadow.log in cache folder when True.
         """
 
+        if selectedProviders is None:
+            selectedProviders = []
+        if countries is None:
+            countries = []
         self.countries: list[str] = [i.upper() for i in countries]
 
         if protocol not in ["https", "http"]:

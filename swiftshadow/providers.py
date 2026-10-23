@@ -13,9 +13,11 @@ from swiftshadow.validator import validate_proxies
 
 
 async def Monosans(
-    countries: list[str] = [],
+    countries: list[str] | None = None,
     protocol: Literal["http", "https"] = "http",
 ) -> list[Proxy]:
+    if countries is None:
+        countries = []
     response = get(
         "https://raw.githubusercontent.com/monosans/proxy-list/main/proxies.json"
     )
@@ -40,8 +42,10 @@ async def Monosans(
 
 
 async def Thespeedx(
-    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+    countries: list[str] | None = None, protocol: Literal["http", "https"] = "http"
 ):
+    if countries is None:
+        countries = []
     results = await GenericPlainTextProxyProvider(
         url="https://raw.githubusercontent.com/TheSpeedX/PROXY-List/master/http.txt",
         protocol="http",
@@ -50,8 +54,10 @@ async def Thespeedx(
 
 
 async def ProxyScrape(
-    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+    countries: list[str] | None = None, protocol: Literal["http", "https"] = "http"
 ):
+    if countries is None:
+        countries = []
     baseUrl = "https://api.proxyscrape.com/v3/free-proxy-list/get?request=displayproxies&protocol=http&proxy_format=ipport&format=json"
     proxies: list[Proxy] = []
     if len(countries) == 0:
@@ -67,8 +73,10 @@ async def ProxyScrape(
 
 
 async def GoodProxy(
-    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+    countries: list[str] | None = None, protocol: Literal["http", "https"] = "http"
 ):
+    if countries is None:
+        countries = []
     baseUrl = "https://raw.githubusercontent.com/yuceltoluyag/GoodProxy/refs/heads/main/GoodProxy.txt"
     proxies: list[Proxy] = []
     raw = get(baseUrl).text
@@ -84,8 +92,10 @@ async def GoodProxy(
 
 
 async def OpenProxyList(
-    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+    countries: list[str] | None = None, protocol: Literal["http", "https"] = "http"
 ):
+    if countries is None:
+        countries = []
     results = await GenericPlainTextProxyProvider(
         "https://raw.githubusercontent.com/roosterkid/openproxylist/refs/heads/main/HTTPS_RAW.txt",
         "http",
@@ -94,8 +104,10 @@ async def OpenProxyList(
 
 
 async def MuRongPIG(
-    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+    countries: list[str] | None = None, protocol: Literal["http", "https"] = "http"
 ):
+    if countries is None:
+        countries = []
     results = await GenericPlainTextProxyProvider(
         "https://raw.githubusercontent.com/MuRongPIG/Proxy-Master/refs/heads/main/http_checked.txt",
         "http",
@@ -104,24 +116,30 @@ async def MuRongPIG(
 
 
 async def Mmpx12(
-    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+    countries: list[str] | None = None, protocol: Literal["http", "https"] = "http"
 ):
+    if countries is None:
+        countries = []
     url = f"https://github.com/mmpx12/proxy-list/raw/refs/heads/master/{protocol}.txt"
     results = await GenericPlainTextProxyProvider(url, protocol)
     return results
 
 
 async def Anonym0usWork1221(
-    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+    countries: list[str] | None = None, protocol: Literal["http", "https"] = "http"
 ):
+    if countries is None:
+        countries = []
     url = f"https://github.com/Anonym0usWork1221/Free-Proxies/raw/refs/heads/main/proxy_files/{protocol}_proxies.txt"
     results = await GenericPlainTextProxyProvider(url, protocol)
     return results
 
 
 async def ProxyDB(
-    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+    countries: list[str] | None = None, protocol: Literal["http", "https"] = "http"
 ):
+    if countries is None:
+        countries = []
     base_url = f"https://www.proxydb.net/?protocol={protocol}&sort_column_id=uptime&sort_order_desc=true"
     proxies: list[Proxy] = []
     raw = get(base_url).text

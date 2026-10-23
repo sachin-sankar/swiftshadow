@@ -9,7 +9,7 @@ async def validate_for_target(
     session: ClientSession,
     url: str,
     proxy: Proxy,
-    headers: dict[str, str] = {},
+    headers: dict[str, str] | None = None,
     timeout: int = 2,
 ) -> tuple[Proxy, ClientResponse]:
     """Validates a single proxy by attempting to connect to a target URL.
@@ -53,6 +53,8 @@ async def validate_for_target(
             print(f"Status: {response.status}")
         ```
     """
+    if headers is None:
+        headers = {}
     result = await session.get(
         url, headers=headers, proxy=proxy.as_string(), timeout=ClientTimeout(timeout)
     )
@@ -62,7 +64,7 @@ async def validate_for_target(
 async def filter_on_target(
     url: str,
     proxies: list[Proxy],
-    headers: dict[str, str] = {},
+    headers: dict[str, str] | None = None,
     timeout: int = 2,
 ) -> list[Proxy]:
     """Filters a list of proxies, returning only those that successfully connect to a target URL.
@@ -106,6 +108,8 @@ async def filter_on_target(
         # Output: 2 out of 3 proxies are working
         ```
     """
+    if headers is None:
+        headers = {}
     working: list[Proxy] = []
     async with ClientSession() as session:
         results: list[tuple[Proxy, ClientResponse] | BaseException] = await gather(
@@ -127,7 +131,10 @@ async def filter_on_target(
 
 
 async def get_for_target(
-    url: str, proxies: list[Proxy], headers: dict[str, str] = {}, timeout: int = 2
+    url: str,
+    proxies: list[Proxy],
+    headers: dict[str, str] | None = None,
+    timeout: int = 2,
 ) -> Proxy | None:
     """Returns the first working proxy from a list that successfully connects to a target URL.
 
@@ -171,6 +178,8 @@ async def get_for_target(
         # Output: Found working proxy: http://fast-proxy.com:3128
         ```
     """
+    if headers is None:
+        headers = {}
     async with ClientSession() as session:
         for task in as_completed(
             validate_for_target(session, url, headers=headers, proxy=p, timeout=timeout)

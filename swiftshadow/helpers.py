@@ -6,7 +6,6 @@ from requests import get
 from swiftshadow.models import Proxy
 from swiftshadow.validator import validate_proxies
 
-
 logger = getLogger("swiftshadow")
 
 
