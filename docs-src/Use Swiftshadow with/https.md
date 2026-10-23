@@ -15,8 +15,10 @@ import httpx
 proxy = QuickProxy()
 
 # Use the proxy with httpx
-with httpx.Client(proxies={"http://": proxy.as_string(), "https://": proxy.as_string()}) as client:
-    resp = client.get('https://checkip.amazonaws.com')
+with httpx.Client(
+    proxies={"http://": proxy.as_string(), "https://": proxy.as_string()}
+) as client:
+    resp = client.get("https://checkip.amazonaws.com")
     print(resp.text)
 ```
 
@@ -26,14 +28,18 @@ from swiftshadow import QuickProxy
 import httpx
 import asyncio
 
+
 async def fetch_with_proxy():
     # Fetch a proxy
     proxy = QuickProxy()
 
     # Use the proxy with httpx
-    async with httpx.AsyncClient(proxies={"http://": proxy.as_string(), "https://": proxy.as_string()}) as client:
-        resp = await client.get('https://checkip.amazonaws.com')
+    async with httpx.AsyncClient(
+        proxies={"http://": proxy.as_string(), "https://": proxy.as_string()}
+    ) as client:
+        resp = await client.get("https://checkip.amazonaws.com")
         print(resp.text)
+
 
 # Run the async function
 asyncio.run(fetch_with_proxy())

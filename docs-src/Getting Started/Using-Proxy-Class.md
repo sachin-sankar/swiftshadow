@@ -3,6 +3,7 @@
 To get a random `HTTP` proxy from any country:
 ```python
 from swiftshadow.classes import ProxyInterface
+
 swift = ProxyInterface()
 
 print(swift.get().as_string())
@@ -30,14 +31,14 @@ To filter proxies by country, pass a list of **two-letter country codes** when i
 - For a list of countries and their two-letter codes, visit [this Wikipedia page](https://en.m.wikipedia.org/wiki/ISO_3166-2).
 
 ```python title="Country Filtered"
-swift = ProxyInterface(countries=['US', 'IN'])
+swift = ProxyInterface(countries=["US", "IN"])
 ```
 
 ## Protocol Filter
 By default, all proxies are `HTTP`. For **SSL-enabled** `HTTPS` proxies, set the `protocol` parameter to `"https"`.
 
 ```python title="HTTPS Filter"
-swift = ProxyInterface(protocol='https')
+swift = ProxyInterface(protocol="https")
 ```
 
 !!! warning
@@ -69,6 +70,7 @@ You can manually rotate proxies using the `rotate()` method. This selects a rand
 
 ```python
 from swiftshadow.classes import ProxyInterface
+
 swift = ProxyInterface()
 
 print(swift.get().as_string())
@@ -81,6 +83,7 @@ To enable automatic proxy rotation, set the `autoRotate` parameter to `True` whe
 
 ```python
 from swiftshadow.classes import ProxyInterface
+
 swift = ProxyInterface(autoRotate=True)
 
 print(swift.get().as_string())

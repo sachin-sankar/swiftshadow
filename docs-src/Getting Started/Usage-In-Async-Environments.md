@@ -26,6 +26,7 @@ app = FastAPI()
 # Create the ProxyInterface with autoUpdate disabled.
 swift = ProxyInterface(autoUpdate=False, autoRotate=True)
 
+
 async def background_task():
     """Update proxies every 5 seconds."""
     while True:
@@ -33,23 +34,24 @@ async def background_task():
         await swift.async_update()
         await asyncio.sleep(5)
 
+
 @app.on_event("startup")
 async def startup_event():
     """Start the background task when the app starts."""
     asyncio.create_task(background_task())
     print("Background task started!")
 
+
 @app.get("/")
 async def home():
     """Return a refreshed proxy."""
     proxy = swift.get()
-    return {
-        "message": "Hello, FastAPI! Here is a proxy.",
-        "proxy": proxy.as_string()
-    }
+    return {"message": "Hello, FastAPI! Here is a proxy.", "proxy": proxy.as_string()}
+
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="127.0.0.1", port=8000, debug=True)
 ```
 
@@ -65,6 +67,7 @@ from swiftshadow.classes import ProxyInterface
 app = Quart(__name__)
 swift = ProxyInterface(autoUpdate=False, autoRotate=False)  # manual update and rotation
 
+
 async def background_task():
     """Update proxies every 5 seconds."""
     while True:
@@ -72,17 +75,20 @@ async def background_task():
         await swift.async_update()
         await asyncio.sleep(5)
 
+
 @app.before_serving
 async def startup():
     """Start the background task when the server starts."""
     app.add_background_task(background_task)
     print("Background task started!")
 
+
 @app.route("/")
 async def home():
     """Return a refreshed proxy."""
     swift.rotate(validate_cache=False)  # manually rotate without cache validation
     return "Hello, Quart! Here is a proxy: " + swift.get().as_string()
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -104,7 +104,7 @@ from swiftshadow import QuickProxy
 from requests import get
 
 proxy = QuickProxy()
-resp = get('https://checkip.amazonaws.com', proxies=proxy.as_requests_dict())
+resp = get("https://checkip.amazonaws.com", proxies=proxy.as_requests_dict())
 print(resp.text)  # Output: Proxy's IP address
 ```
 
@@ -115,8 +115,10 @@ from swiftshadow import QuickProxy
 import httpx
 
 proxy = QuickProxy()
-with httpx.Client(proxies={"http://": proxy.as_string(), "https://": proxy.as_string()}) as client:
-    resp = client.get('https://checkip.amazonaws.com')
+with httpx.Client(
+    proxies={"http://": proxy.as_string(), "https://": proxy.as_string()}
+) as client:
+    resp = client.get("https://checkip.amazonaws.com")
     print(resp.text)  # Output: Proxy's IP address
 ```
 
