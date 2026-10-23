@@ -4,7 +4,7 @@
 # https://packaging.python.org/guides/single-sourcing-package-version/
 from pathlib import Path
 
-from setuptools import find_packages, setup
+from setuptools import find_packages, setup  # ty: ignore[unresolved-import]
 
 this_directory = Path(__file__).parent
 

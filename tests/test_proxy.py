@@ -44,7 +44,7 @@ def test_log_file():
 
     with open(logPath, "rt") as file:
         text = file.read()
-        assert text != "", True
+        assert text != "", "Log file should not be empty"
 
 
 def test_async_update():

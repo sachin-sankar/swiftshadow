@@ -28,6 +28,6 @@ def QuickProxy(
             continue
         try:
             return run(provider.providerFunction(countries, protocol))[0]
-        except Exception:
+        except Exception:  # noqa: BLE001, S112
             continue
     return None

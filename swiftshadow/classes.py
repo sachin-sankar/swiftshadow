@@ -110,7 +110,7 @@ class ProxyInterface:
                     providers.append(ProvidersMap[i])
                 except KeyError:
                     raise ValueError(
-                        f"Unkown provider {i.__name__} in the list of Selected Providers."
+                        f"Unkown provider {i.__name__} in the list of Selected Providers."  # ty: ignore[unresolved-attribute]
                     )
             self.providers: list[Provider] = providers
         else:
@@ -190,7 +190,7 @@ class ProxyInterface:
                 self.countries, self.protocol
             )
             logger.debug(
-                f"{len(providerProxies)} proxies from {provider.providerFunction.__name__}"
+                f"{len(providerProxies)} proxies from {provider.providerFunction.__name__}"  # ty: ignore[unresolved-attribute]
             )
             self.proxies.extend(providerProxies)
 
