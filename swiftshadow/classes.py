@@ -1,20 +1,19 @@
 from asyncio import run
-from datetime import datetime
+from collections.abc import Callable, Coroutine
+from datetime import datetime, timedelta, timezone
 from logging import DEBUG, INFO, FileHandler, Formatter, StreamHandler, getLogger
 from pathlib import Path
-from pickle import dump, dumps, load, loads
+from pickle import dumps, loads
 from random import choice
 from sys import stdout
-from typing import Literal, Any, Callable, Coroutine
+from typing import Any, Literal
 
 import aiofiles
 from appdirs import user_cache_dir
 
-from swiftshadow.cache import checkExpiry, getExpiry
 from swiftshadow.exceptions import UnsupportedProxyProtocol
 from swiftshadow.helpers import deduplicateProxies
-from swiftshadow.models import CacheData, Provider
-from swiftshadow.models import Proxy as Proxy
+from swiftshadow.models import CacheData, Provider, Proxy
 from swiftshadow.providers import Providers as ProvidersMap
 
 logger = getLogger("swiftshadow")
@@ -62,13 +61,14 @@ class ProxyInterface:
 
     def __init__(
         self,
-        countries: list[str] = [],
+        countries: list[str] | None = None,
         protocol: Literal["https", "http"] = "http",
         selectedProviders: list[
             Callable[
                 [list[str], Literal["http", "https"]], Coroutine[Any, Any, list[Proxy]]
             ]
-        ] = [],
+        ]
+        | None = None,
         maxProxies: int = 10,
         autoRotate: bool = False,
         autoUpdate: bool = True,
@@ -92,6 +92,10 @@ class ProxyInterface:
             logToFile: Write logs to swiftshadow.log in cache folder when True.
         """
 
+        if selectedProviders is None:
+            selectedProviders = []
+        if countries is None:
+            countries = []
         self.countries: list[str] = [i.upper() for i in countries]
 
         if protocol not in ["https", "http"]:
@@ -106,7 +110,7 @@ class ProxyInterface:
                     providers.append(ProvidersMap[i])
                 except KeyError:
                     raise ValueError(
-                        f"Unkown provider {i.__name__} in the list of Selected Providers."
+                        f"Unkown provider {i.__name__} in the list of Selected Providers."  # ty: ignore[unresolved-attribute]
                     )
             self.providers: list[Provider] = providers
         else:
@@ -160,7 +164,7 @@ class ProxyInterface:
 
                 if self.configString != cache.configString:
                     logger.info("Cache Invalid due to configuration changes.")
-                elif not checkExpiry(cache.expiryIn):
+                elif (datetime.now(timezone.utc) - cache.expiryIn).days < 0:
                     self.proxies = cache.proxies
                     logger.info("Loaded proxies from cache.")
                     logger.debug(
@@ -186,7 +190,7 @@ class ProxyInterface:
                 self.countries, self.protocol
             )
             logger.debug(
-                f"{len(providerProxies)} proxies from {provider.providerFunction.__name__}"
+                f"{len(providerProxies)} proxies from {provider.providerFunction.__name__}"  # ty: ignore[unresolved-attribute]
             )
             self.proxies.extend(providerProxies)
 
@@ -202,7 +206,9 @@ class ProxyInterface:
         async with aiofiles.open(
             self.cacheFolderPath.joinpath("swiftshadow.pickle"), "wb+"
         ) as cacheFile:
-            cacheExpiry = getExpiry(self.cachePeriod)
+            cacheExpiry = datetime.now(timezone.utc) + timedelta(
+                minutes=self.cachePeriod
+            )
             self.cacheExpiry = cacheExpiry
             cache = CacheData(cacheExpiry, self.configString, self.proxies)
             pickled_bytes = dumps(cache)
@@ -212,67 +218,8 @@ class ProxyInterface:
     def update(self):
         """
         Updates proxy list from providers or cache.
-
-        First attempts to load valid proxies from cache. If cache is expired/missing,
-        fetches fresh proxies from registered providers that match country and protocol filters.
-        Updates cache file with new proxies if fetched from providers.
-
-        Raises:
-            ValueError: If no proxies found after provider scraping.
         """
-        try:
-            with open(
-                self.cacheFolderPath.joinpath("swiftshadow.pickle"), "rb"
-            ) as cacheFile:
-                cache: CacheData = load(cacheFile)
-
-                if self.configString != cache.configString:
-                    logger.info("Cache Invalid due to configuration changes.")
-                elif not checkExpiry(cache.expiryIn):
-                    self.proxies = cache.proxies
-                    logger.info("Loaded proxies from cache.")
-                    logger.debug(
-                        f"Cache with {len(cache.proxies)} proxies, expire in {cache.expiryIn}"
-                    )
-                    self.current = self.proxies[0]
-                    logger.debug(f"Cache set to expire at {cache.expiryIn}")
-                    self.cacheExpiry = cache.expiryIn
-                    return
-                else:
-                    logger.info("Cache Expired")
-        except FileNotFoundError:
-            logger.info("No cache found, will be created after update.")
-
-        self.proxies = []
-
-        for provider in self.providers:
-            if self.protocol not in provider.protocols:
-                continue
-            if (len(self.countries) != 0) and (not provider.countryFilter):
-                continue
-            providerProxies: list[Proxy] = run(
-                provider.providerFunction(self.countries, self.protocol)
-            )
-            logger.debug(
-                f"{len(providerProxies)} proxies from {provider.providerFunction.__name__}"
-            )
-            self.proxies.extend(providerProxies)
-
-            if len(self.proxies) >= self.maxproxies:
-                break
-
-        if len(self.proxies) == 0:
-            raise ValueError("No proxies were found for the current filter settings.")
-
-        self.proxies = deduplicateProxies(self.proxies)
-        with open(
-            self.cacheFolderPath.joinpath("swiftshadow.pickle"), "wb+"
-        ) as cacheFile:
-            cacheExpiry = getExpiry(self.cachePeriod)
-            self.cacheExpiry = cacheExpiry
-            cache = CacheData(cacheExpiry, self.configString, self.proxies)
-            dump(cache, cacheFile)
-        self.current = self.proxies[0]
+        run(self.async_update())
 
     def rotate(self, validate_cache: bool = False):
         """
@@ -290,7 +237,7 @@ class ProxyInterface:
         """
         if validate_cache:
             if self.cacheExpiry:
-                if checkExpiry(self.cacheExpiry):
+                if (datetime.now(timezone.utc) - self.cacheExpiry).days >= 0:
                     logger.debug("Cache Expired on rotate call, updating.")
                     self.update()
             else:

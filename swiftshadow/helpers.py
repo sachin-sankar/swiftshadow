@@ -1,4 +1,4 @@
-from datetime import datetime
+from logging import getLogger
 from typing import Literal
 
 from requests import get
@@ -6,25 +6,11 @@ from requests import get
 from swiftshadow.models import Proxy
 from swiftshadow.validator import validate_proxies
 
-
-def checkProxy(proxy):
-    proxyDict = {proxy[1]: proxy[0]}
-    try:
-        resp = get(
-            f"{proxy[1]}://checkip.amazonaws.com", proxies=proxyDict, timeout=2
-        ).text
-        if resp.count(".") == 3:
-            return True
-        return False
-    except Exception:
-        return False
+logger = getLogger("swiftshadow")
 
 
 def log(level, message):
-    level = level.upper()
-    print(
-        f"{datetime.now().strftime('%d/%m/%Y %H:%M:%S')} - [swiftshadow] - {level} : {message}"
-    )
+    logger.log(getattr(logger, level.upper(), 20), message)
 
 
 def plaintextToProxies(text: str, protocol: Literal["http", "https"]) -> list[Proxy]:
@@ -32,10 +18,9 @@ def plaintextToProxies(text: str, protocol: Literal["http", "https"]) -> list[Pr
     for line in text.splitlines():
         try:
             ip, port = line.split(":")
+            proxies.append(Proxy(ip=ip, port=int(port), protocol=protocol))
         except ValueError:
             continue
-        proxy = Proxy(ip=ip, port=int(port), protocol=protocol)
-        proxies.append(proxy)
     return proxies
 
 
@@ -49,11 +34,4 @@ async def GenericPlainTextProxyProvider(
 
 
 def deduplicateProxies(proxies: list[Proxy]) -> list[Proxy]:
-    seen: list[str] = []
-    final: list[Proxy] = []
-    for proxy in proxies:
-        proxy_str: str = proxy.as_string()
-        if proxy_str not in seen:
-            final.append(proxy)
-            seen.append(proxy_str)
-    return final
+    return list({p.as_string(): p for p in proxies}.values())

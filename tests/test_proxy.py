@@ -1,7 +1,7 @@
 from asyncio import run
 from pathlib import Path
-from os import remove
 
+import pytest
 from appdirs import user_cache_dir
 
 from swiftshadow.classes import ProxyInterface
@@ -21,6 +21,8 @@ def test_proxy_country_filter():
 
 def test_proxy_rotation():
     swift = ProxyInterface(debug=True)
+    if len(swift.proxies) < 1:
+        pytest.skip("Not enough proxies to test rotation.")
     first = swift.get()
     swift.rotate()
     second = swift.get()
@@ -29,6 +31,8 @@ def test_proxy_rotation():
 
 def test_proxy_auto_rotation():
     swift = ProxyInterface(debug=True, autoRotate=True)
+    if len(swift.proxies) < 1:
+        pytest.skip("Not enough proxies to test auto rotation.")
     first = swift.get()
     second = swift.get()
     assert first != second
@@ -40,15 +44,15 @@ def test_log_file():
 
     with open(logPath, "rt") as file:
         text = file.read()
-        assert text != "", True
+        assert text != "", "Log file should not be empty"
 
 
 def test_async_update():
     cacheFilePath = Path(user_cache_dir(appname="swiftshadow")).joinpath(
         "swiftshadow.pickle"
     )
-    remove(cacheFilePath)
-    swift = ProxyInterface(autoUpdate=False)
+    cacheFilePath.unlink(missing_ok=True)
+    swift = ProxyInterface(autoUpdate=False, debug=True)
     run(swift.async_update())
     assert isinstance(swift.get(), Proxy)
 
@@ -57,16 +61,16 @@ def test_async_update_autorotate():
     cacheFilePath = Path(user_cache_dir(appname="swiftshadow")).joinpath(
         "swiftshadow.pickle"
     )
-    remove(cacheFilePath)
-    swift = ProxyInterface(autoUpdate=False, autoRotate=True)
+    cacheFilePath.unlink(missing_ok=True)
+    swift = ProxyInterface(autoUpdate=False, autoRotate=True, debug=True)
     run(swift.async_update())
     assert isinstance(swift.get(), Proxy)
     assert isinstance(swift.get(), Proxy)
 
 
 def test_provider_selection():
-    selectedProvider = list(Providers.keys())[0]
-    swift = ProxyInterface(selectedProviders=[selectedProvider])
+    selectedProvider = next(iter(Providers))
+    swift = ProxyInterface(selectedProviders=[selectedProvider], debug=True)
     proxy = swift.get()
     assert isinstance(proxy, Proxy)
     assert swift.providers[0] == Providers[selectedProvider]

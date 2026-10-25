@@ -14,7 +14,7 @@ from requests import get
 proxy = QuickProxy()
 
 # Use the proxy with requests
-resp = get('https://checkip.amazonaws.com', proxies=proxy.as_requests_dict())
+resp = get("https://checkip.amazonaws.com", proxies=proxy.as_requests_dict())
 print(resp.text)
 ```
 

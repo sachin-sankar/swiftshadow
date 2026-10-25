@@ -6,7 +6,7 @@ from swiftshadow.providers import Providers
 
 
 def QuickProxy(
-    countries: list[str] = [], protocol: Literal["http", "https"] = "http"
+    countries: list[str] | None = None, protocol: Literal["http", "https"] = "http"
 ) -> Proxy | None:
     """
     This function is a faster alternative to `ProxyInterface` class.
@@ -19,6 +19,8 @@ def QuickProxy(
     Returns:
         proxyObject (Proxy): A working proxy object if found or else None.
     """
+    if countries is None:
+        countries = []
     for provider in Providers.values():
         if protocol not in provider.protocols:
             continue
@@ -26,6 +28,6 @@ def QuickProxy(
             continue
         try:
             return run(provider.providerFunction(countries, protocol))[0]
-        except Exception:
+        except Exception:  # noqa: BLE001, S112
             continue
     return None
