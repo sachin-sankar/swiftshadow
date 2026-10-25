@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="docs-src/banner.svg" alt="Matriarch Banner" width="100%" />
+</p>
 # Swiftshadow
 
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/swiftshadow)  
